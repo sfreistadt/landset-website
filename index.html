@@ -165,6 +165,13 @@ document.addEventListener('DOMContentLoaded', async function() {
   } catch (err) {
     setStatus('Error unpacking: ' + err.message);
     console.error('Bundle unpack error:', err);
+    console.error('Error details:', {
+      name: err.name,
+      message: err.message,
+      stack: err.stack,
+      browser: navigator.userAgent,
+      jsonLength: document.querySelector('script[type="__bundler/template"]')?.textContent?.length
+    });
   }
 });
 
