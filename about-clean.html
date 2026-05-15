@@ -1603,7 +1603,7 @@
             <h3>Send us a message.</h3>
             <div class="subtitle">We'll get back to you within 24 hours</div>
             
-            <form id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+            <form id="contactForm" action="https://formspree.io/f/mojrgnwv" method="POST">
               <div class="form-group">
                 <label for="name">Name *</label>
                 <input type="text" id="name" name="name" required>
@@ -1624,9 +1624,7 @@
                 <textarea id="message" name="message" required placeholder="Tell us what's on your mind..."></textarea>
               </div>
 
-              <div class="form-group recaptcha">
-                <div class="g-recaptcha" data-sitekey="YOUR_RECAPTCHA_SITE_KEY"></div>
-              </div>
+              
 
               <div class="form-submit">
                 <button type="submit">Send Message</button>
@@ -1699,9 +1697,6 @@
 
 
 
-  <!-- Google reCAPTCHA -->
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
   <!-- Contact Form Handler -->
   <script>
     document.getElementById('contactForm').addEventListener('submit', async function(e) {
@@ -1709,24 +1704,15 @@
       
       const statusEl = document.getElementById('formStatus');
       const submitBtn = this.querySelector('button[type="submit"]');
-      const recaptchaResponse = grecaptcha.getResponse();
-      
-      // Validate reCAPTCHA
-      if (!recaptchaResponse) {
-        statusEl.textContent = 'Please complete the reCAPTCHA';
-        statusEl.className = 'form-status error';
-        return;
-      }
       
       // Disable submit button
       submitBtn.disabled = true;
       statusEl.textContent = 'Sending...';
       statusEl.className = 'form-status';
       
-      // Submit form
+      // Submit form to Formspree
       try {
         const formData = new FormData(this);
-        formData.append('g-recaptcha-response', recaptchaResponse);
         
         const response = await fetch(this.action, {
           method: 'POST',
@@ -1740,9 +1726,14 @@
           statusEl.textContent = 'Message sent! We\'ll be in touch soon.';
           statusEl.className = 'form-status success';
           this.reset();
-          grecaptcha.reset();
         } else {
-          throw new Error('Form submission failed');
+          const data = await response.json();
+          if (data.errors) {
+            statusEl.textContent = data.errors.map(e => e.message).join(', ');
+          } else {
+            statusEl.textContent = 'Something went wrong. Please try again.';
+          }
+          statusEl.className = 'form-status error';
         }
       } catch (error) {
         statusEl.textContent = 'Something went wrong. Please try again.';
