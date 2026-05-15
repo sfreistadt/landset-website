@@ -60,7 +60,20 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
 
     const manifest = JSON.parse(manifestEl.textContent);
-    let template = JSON.parse(templateEl.textContent);
+    
+    // Validate template JSON before parsing (helps diagnose browser-specific issues)
+    const templateJSON = templateEl.textContent.trim();
+    console.log('[bundler] Template JSON length:', templateJSON.length, 'chars');
+    
+    // Check for common JSON issues
+    if (!templateJSON.startsWith('"')) {
+      throw new Error('Template JSON should start with a quote, found: ' + templateJSON.substring(0, 20));
+    }
+    if (!templateJSON.endsWith('"')) {
+      throw new Error('Template JSON should end with a quote, found: ...' + templateJSON.substring(templateJSON.length - 20));
+    }
+    
+    let template = JSON.parse(templateJSON);
 
     const uuids = Object.keys(manifest);
     setStatus('Unpacking ' + uuids.length + ' assets...');
