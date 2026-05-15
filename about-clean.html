@@ -1704,7 +1704,7 @@
   <script>
     // Initialize EmailJS with your public key
     (function() {
-      emailjs.init('YOUR_PUBLIC_KEY'); // Replace with your EmailJS public key
+      emailjs.init('NWurMD-cIVch7p6Ya'); // Replace with your EmailJS public key
     })();
 
     document.getElementById('contactForm').addEventListener('submit', function(e) {
@@ -1720,7 +1720,7 @@
       statusEl.className = 'form-status';
       
       // Send email using EmailJS
-      emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', this)
+      emailjs.sendForm('service_07vkr5h', 'template_minos6u', this)
         .then(function(response) {
           console.log('SUCCESS!', response.status, response.text);
           statusEl.textContent = 'Message sent! We\'ll be in touch soon.';
