@@ -1190,6 +1190,145 @@
     @media (prefers-reduced-motion: reduce) {
       .reveal { opacity: 1; transform: none; transition: none; }
     }
+  
+    /* ============================ CONTACT FORM ============================ */
+    .contact-section {
+      padding: 96px 0 120px;
+      background: var(--paper-2);
+      border-top: 1px solid var(--rule);
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    @media (max-width: 880px) {
+      .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+    }
+    .contact-intro h2 {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(44px, 6vw, 84px);
+      line-height: 0.98;
+      letter-spacing: -0.01em;
+      margin: 16px 0 24px;
+      text-wrap: balance;
+    }
+    .contact-intro h2 .em { color: var(--sage); }
+    .contact-intro p {
+      font-size: 17px;
+      line-height: 1.6;
+      color: var(--ink-soft);
+      margin: 0;
+      max-width: 40ch;
+    }
+
+    .contact-form {
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      padding: 48px;
+      border-radius: 2px;
+    }
+    @media (max-width: 720px) {
+      .contact-form { padding: 32px 24px; }
+    }
+    .contact-form h3 {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 32px;
+      line-height: 1.1;
+      margin: 0 0 8px;
+    }
+    .contact-form .subtitle {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--mute);
+      margin-bottom: 32px;
+    }
+    .form-group {
+      margin-bottom: 24px;
+    }
+    .form-group label {
+      display: block;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      font-family: var(--sans);
+      font-size: 15px;
+      padding: 12px 16px;
+      border: 1px solid var(--rule-strong);
+      background: var(--paper);
+      color: var(--ink);
+      border-radius: 2px;
+      transition: border-color .2s;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--sage);
+    }
+    .form-group textarea {
+      min-height: 140px;
+      resize: vertical;
+      font-family: var(--sans);
+      line-height: 1.5;
+    }
+    .form-group.recaptcha {
+      margin: 32px 0;
+    }
+    .form-submit {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .form-submit button {
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 13px 24px;
+      background: var(--sage);
+      color: var(--paper);
+      border: 1px solid var(--sage);
+      border-radius: 2px;
+      cursor: pointer;
+      transition: all .18s;
+    }
+    .form-submit button:hover {
+      background: var(--sage-dark);
+      border-color: var(--sage-dark);
+    }
+    .form-submit button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    .form-status {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+    }
+    .form-status.success {
+      color: var(--sage-dark);
+    }
+    .form-status.error {
+      color: var(--rust);
+    }
+
   </style>
 </head>
 <body>
@@ -1217,13 +1356,13 @@
           <span class="rule"></span>
           <span class="eyebrow">About · Austin, TX · Founded 2026</span>
         </div>
-        <h1>We're <span class="accent">two builders</span><br>making property records<br>readable.</h1>
+        <h1>We're <span class="accent">two builders</span><br>making property intelligence tools</h1>
 
         <div class="hero-lede">
           <div class="label">A note from the founders</div>
           <div>
-            <p>Landset started with a simple frustration: <em>the documents that decide whether a house is worth buying are scattered across a dozen city systems</em> — and almost nobody reads them before closing.</p>
-            <p>We're building the briefing we wish we'd had: one quiet six-page document that turns Austin's open permit data into something an agent, a homeowner, or an inspector can actually use.</p>
+            <p>Landset started with a gap we felt personally:<em>the data that matters about a property is public, but it's scattered across a dozen systems and means nothing without context. </em>No one knows if this house is typical for the neighborhood or an outlier — because no one compares.</p>
+            <p><em>One report. </em>Built for homeowners, buyers, and agents who need answers — whether you're closing, renovating, or selling.</p>
           </div>
         </div>
       </div>
@@ -1309,15 +1448,11 @@
               </div>
               <div class="fact">
                 <div class="label">Before Landset</div>
-                <div class="value"><em>Product management at Fortune 500 companies</em></div>
+                <div class="value"><em>Product management at Favor (H-E-B), CLEAR, iHeartMedia, Whole Foods Market, Bazaarvoice</em></div>
               </div>
               <div class="fact">
                 <div class="label">Based in</div>
                 <div class="value">Austin, TX</div>
-              </div>
-              <div class="fact">
-                <div class="label">Currently reading</div>
-                <div class="value"><em>City of Austin permit schemas</em></div>
               </div>
             </div>
 
@@ -1453,22 +1588,53 @@
       </div>
     </section>
 
-    <!-- ============================ JOIN ============================ -->
-    <section class="join" data-screen-label="06 Join">
+    <!-- ============================ CONTACT ============================ -->
+    <section class="contact-section" data-screen-label="06 Contact">
       <div class="wrap">
-        <div class="join-grid">
-          <div>
+        <div class="contact-grid">
+          <div class="contact-intro">
             <div class="eyebrow">Get in touch</div>
-            <h2>Curious? <span class="em">Come find us.</span></h2>
+            <h2>Questions? <span class="em">Let's talk.</span></h2>
+            <p>Whether you're curious about Landset, have feedback on our reports, or want to discuss a partnership - we'd love to hear from you.</p>
+            <a href="index.html#early-access" class="btn btn-sage" style="display: inline-block; margin-top: 24px;">Get early access <span class="arrow">→</span></a>
           </div>
-          <div class="ctas">
-            <a href="index.html#early-access" class="btn btn-sage">Get early access <span class="arrow">→</span></a>
-            <a href="mailto:hello@landset.co" class="btn btn-ghost">Say hello</a>
+
+          <div class="contact-form">
+            <h3>Send us a message.</h3>
+            <div class="subtitle">We'll get back to you within 24 hours</div>
+            
+            <form id="contactForm">
+              <div class="form-group">
+                <label for="name">Name *</label>
+                <input type="text" id="name" name="name" required>
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" required>
+              </div>
+
+              <div class="form-group">
+                <label for="subject">Subject</label>
+                <input type="text" id="subject" name="subject" placeholder="What's this about?">
+              </div>
+
+              <div class="form-group">
+                <label for="message">Message *</label>
+                <textarea id="message" name="message" required placeholder="Tell us what's on your mind..."></textarea>
+              </div>
+
+              
+
+              <div class="form-submit">
+                <button type="submit">Send Message</button>
+                <span class="form-status" id="formStatus"></span>
+              </div>
+            </form>
           </div>
         </div>
       </div>
-    </section>
-  </main>
+    </section>  </main>
 
   <!-- ============================ FOOTER ============================ -->
   <footer>
@@ -1499,9 +1665,8 @@
         <div>
           <h5>Connect</h5>
           <ul>
-            <li><a href="mailto:steve@landset.co">steve@landset.co</a></li>
-            <li><a href="mailto:danny@landset.co">danny@landset.co</a></li>
-            <li><a href="#">LinkedIn</a></li>
+            <li><a href="#contact">Contact form</a></li>
+            <li><a href="https://www.linkedin.com/company/landset" target="_blank" rel="noopener">LinkedIn</a></li>
             <li><a href="#">Privacy</a></li>
           </ul>
         </div>
@@ -1530,5 +1695,47 @@
   <!-- Bundler thumbnail (splash + no-JS fallback) -->
   
 
+
+
+  <!-- EmailJS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  
+  <!-- Contact Form Handler with EmailJS -->
+  <script>
+    // Initialize EmailJS with your public key
+    (function() {
+      emailjs.init('NWurMD-cIVch7p6Ya'); // Replace with your EmailJS public key
+    })();
+
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const statusEl = document.getElementById('formStatus');
+      const submitBtn = this.querySelector('button[type="submit"]');
+      
+      // Disable submit button
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+      statusEl.textContent = '';
+      statusEl.className = 'form-status';
+      
+      // Send email using EmailJS
+      emailjs.sendForm('service_07vkr5h', 'template_minos6u', this)
+        .then(function(response) {
+          console.log('SUCCESS!', response.status, response.text);
+          statusEl.textContent = 'Message sent! We\'ll be in touch soon.';
+          statusEl.className = 'form-status success';
+          document.getElementById('contactForm').reset();
+          submitBtn.textContent = 'Send Message';
+          submitBtn.disabled = false;
+        }, function(error) {
+          console.log('FAILED...', error);
+          statusEl.textContent = 'Something went wrong. Please try again or email us directly.';
+          statusEl.className = 'form-status error';
+          submitBtn.textContent = 'Send Message';
+          submitBtn.disabled = false;
+        });
+    });
+  </script>
 
 </body></html>
