@@ -697,6 +697,12 @@
       padding: 48px 0 56px;
       position: relative;
     }
+    .hero + section {
+      padding-top: 40px;
+    }
+    @media (max-width: 720px) {
+      .hero + section { padding-top: 32px; }
+    }
     .hero-grid {
       display: grid;
       grid-template-columns: 1.05fr 0.95fr;
@@ -718,7 +724,7 @@
       flex: 0 0 36px; height: 1px; background: var(--mute);
     }
     .hero h1 {
-      font-size: clamp(48px, 7.4vw, 104px);
+      font-size: clamp(40px, 5.5vw, 72px);
       margin: 0 0 28px;
     }
     .hero h1 .accent { color: var(--sage); }
@@ -1480,6 +1486,7 @@
       <nav class="nav-links">
         <a href="#brief">What's in a brief</a>
         <a href="#how">How it works</a>
+        <a href="about.html">About</a>
         <a href="#early-access" class="btn btn-sage">Get early access <span class="arrow">→</span></a>
       </nav>
     </div>
@@ -1754,7 +1761,7 @@
         <div>
           <h5>Company</h5>
           <ul>
-            <li><a href="#">About</a></li>
+            <li><a href="about.html">About</a></li>
             <li><a href="mailto:hello@landset.co">hello@landset.co</a></li>
             <li><a href="#">Privacy</a></li>
             <li><a href="#">Terms</a></li>
