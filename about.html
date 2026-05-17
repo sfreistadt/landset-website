@@ -780,6 +780,10 @@
     }
 
     .founder {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 72px;
+      align-items: start;
       padding: 64px 0;
       border-top: 1px solid var(--ink);
     }
@@ -787,27 +791,17 @@
       border-bottom: 1px solid var(--ink);
     }
     @media (max-width: 880px) {
-      .founder { padding: 48px 0; }
+      .founder { grid-template-columns: 1fr; gap: 36px; padding: 48px 0; }
     }
 
     .founder-portrait {
       position: relative;
       display: block;
-      float: left;
-      margin-right: 72px;
-      margin-bottom: 32px;
-    }
-    @media (max-width: 880px) {
-      .founder-portrait {
-        float: none;
-        margin-right: 0;
-        margin-bottom: 36px;
-      }
     }
     .founder-portrait .frame {
       aspect-ratio: 1 / 1;
       width: 100%;
-      max-width: 315px;
+      max-width: 420px;
       margin: 0 auto;
       overflow: hidden;
       border: 1px solid var(--rule-strong);
@@ -907,9 +901,7 @@
       line-height: 1.6;
       color: var(--ink-soft);
       margin: 0 0 16px;
-    }
-    .founder-body .bio p:nth-child(3) {
-      clear: left;
+      max-width: 56ch;
     }
     .founder-body .bio p:last-child { margin-bottom: 0; }
     .founder-body .bio .first-letter::first-letter {
