@@ -2053,5 +2053,25 @@ function TweaksPanelComponent({ t, setTweak, theme }) {
 ReactDOM.createRoot(document.getElementById("root")).render(<App />);
 </script>
 
+<!-- Google Analytics Event Tracking -->
+<script>
+  (function() {
+    // Track clicks on "Get early access" links
+    document.addEventListener('click', function(e) {
+      const target = e.target.closest('a[href*="early-access"]');
+      if (target) {
+        const location = target.closest('header') ? 'navigation' : 'unknown';
+
+        gtag('event', 'get_early_access_click', {
+          'event_category': 'engagement',
+          'event_label': location,
+          'location': location,
+          'page': 'terms'
+        });
+      }
+    });
+  })();
+</script>
+
 </body>
 </html>

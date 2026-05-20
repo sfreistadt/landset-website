@@ -1815,9 +1815,62 @@
   
 
   <!-- Bundler thumbnail (splash + no-JS fallback) -->
-  
 
 
+
+
+  <!-- Google Analytics Event Tracking -->
+  <script>
+    (function() {
+      // Track clicks on "Get early access" links (nav, hero, footer)
+      document.addEventListener('click', function(e) {
+        const target = e.target.closest('a[href="#early-access"]');
+        if (target) {
+          const location = target.closest('header') ? 'navigation' :
+                          target.closest('.hero') ? 'hero' :
+                          target.closest('footer') ? 'footer' : 'unknown';
+
+          gtag('event', 'get_early_access_click', {
+            'event_category': 'engagement',
+            'event_label': location,
+            'location': location
+          });
+        }
+      });
+
+      // Track clicks on the Tally form button
+      document.addEventListener('click', function(e) {
+        const tallyButton = e.target.closest('[data-tally-open]');
+        if (tallyButton) {
+          gtag('event', 'get_early_access_form_open', {
+            'event_category': 'engagement',
+            'event_label': 'tally_form_button',
+            'location': 'early_access_section'
+          });
+        }
+      });
+
+      // Track Tally form submissions (completions)
+      window.addEventListener('message', function(e) {
+        // Tally sends messages when forms are submitted
+        if (e.data && e.data.event === 'Tally.FormSubmitted') {
+          gtag('event', 'get_early_access_form_completed', {
+            'event_category': 'conversion',
+            'event_label': 'early_access_signup',
+            'location': 'tally_form',
+            'form_id': e.data.formId || 'RGbKZ9'
+          });
+
+          // Also send as a conversion event for better tracking
+          gtag('event', 'conversion', {
+            'send_to': 'G-V6GR919718',
+            'event_category': 'lead_generation',
+            'event_label': 'early_access_completed'
+          });
+        }
+      });
+    })();
+  </script>
 
   <script src="https://tally.so/widgets/embed.js"></script>
 
