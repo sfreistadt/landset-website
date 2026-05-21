@@ -1,0 +1,1633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — Landset</title>
+<meta name="description" content="Privacy Policy for Landset — how we collect, use, and protect your information.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: #F6F3EC;
+    color: #171614;
+    font-family: 'Geist', 'Helvetica Neue', Helvetica, sans-serif;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection { background: rgba(90, 127, 93, 0.25); }
+  a { color: inherit; }
+
+  /* Selection text matches the document tone */
+  ::-moz-selection { background: rgba(90, 127, 93, 0.25); }
+
+  /* Scrollbar — thin, unobtrusive */
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.12); border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,0.22); }
+
+  /* Splash while React mounts — prevents flash of unstyled text */
+  #root:empty::before {
+    content: "Landset · Privacy Policy";
+    display: block;
+    padding: 56px 48px;
+    font-family: 'Geist Mono', ui-monospace, monospace;
+    font-size: 11px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: #8A867C;
+  }
+
+  /* Small-screen fallback — single column */
+  @media (max-width: 880px) {
+    #root > div > div {
+      grid-template-columns: 1fr !important;
+      gap: 32px !important;
+      padding: 0 24px !important;
+    }
+    #root aside {
+      position: static !important;
+      height: auto !important;
+      padding-right: 0 !important;
+      padding-top: 32px !important;
+      border-right: none !important;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+  }
+
+  /* Mobile header adjustments */
+  @media (max-width: 768px) {
+    header > div {
+      padding: 16px 24px !important;
+      flex-wrap: wrap !important;
+    }
+    header nav {
+      width: 100% !important;
+      justify-content: space-around !important;
+      gap: 12px !important;
+      margin-top: 12px !important;
+    }
+    header nav a {
+      font-size: 12px !important;
+    }
+    /* Hide the "Get early access" button on mobile */
+    header nav a:last-child {
+      display: none !important;
+    }
+  }
+
+  /* Mobile footer adjustments */
+  @media (max-width: 768px) {
+    footer > div:first-child {
+      grid-template-columns: 1fr !important;
+      padding: 48px 24px 32px !important;
+      gap: 40px !important;
+    }
+    footer > div:last-child {
+      padding: 0 24px 32px !important;
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      gap: 12px !important;
+    }
+  }
+</style>
+<style>
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+}
+</style>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-V6GR919718"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-V6GR919718');
+  </script>
+</head>
+<body>
+<div id="root"></div>
+
+<!-- React, ReactDOM, Babel from CDN -->
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<script type="text/babel">
+// Privacy Policy — content data
+const PRIVACY_LAST_UPDATED = "May 21, 2026";
+
+const PRIVACY_SECTIONS = [
+  // ─────────────────────────────────────────────────────────────
+  {
+    id: "who-we-are",
+    letter: "A",
+    label: "Who We Are",
+    title: "Who We Are.",
+    summary:
+      "Landset helps homebuyers and their real estate agents make informed property decisions by aggregating publicly available data and presenting it in context. We're a small team based in Austin, Texas, and we take your privacy seriously.",
+    body: [
+      "Landset helps homebuyers and their real estate agents make informed property decisions by aggregating publicly available data and presenting it in context. We're a small team based in Austin, Texas, and we take your privacy seriously.",
+    ],
+  },
+
+  // ─────────────────────────────────────────────────────────────
+  {
+    id: "what-this-covers",
+    letter: "B",
+    label: "Coverage",
+    title: "What This Policy Covers.",
+    summary:
+      "This Privacy Policy explains how Landset collects, uses, and protects information when you visit our website, request reports, contact us, or interact with our communications.",
+    body: [
+      "This Privacy Policy explains how Landset (\"we,\" \"us,\" \"our\") collects, uses, and protects information when you:",
+      {
+        kind: "list",
+        items: [
+          "Visit our website at landset.co",
+          "Request a property intelligence report",
+          "Contact us about our services",
+          "Interact with our emails or communications",
+        ],
+      },
+      {
+        kind: "callout",
+        tone: "info",
+        title: "What this doesn't cover",
+        text:
+          "Information about properties themselves. Property records, permit data, and ownership history come from public sources and are generally not \"personal information\" under privacy laws. This policy covers information about you — the person using our service.",
+      },
+    ],
+  },
+
+  // ─────────────────────────────────────────────────────────────
+  {
+    id: "information-collected",
+    letter: "C",
+    label: "Collection",
+    title: "Information We Collect.",
+    summary:
+      "We collect information you give us (contact info, property addresses) and information collected automatically (usage data, device info, cookies). We don't collect credit card info, SSNs, or precise geolocation.",
+    body: [
+      { kind: "subhead", text: "C.1 Information You Give Us" },
+      {
+        kind: "list",
+        items: [
+          "Contact information: Name, email address, phone number",
+          "Property addresses: The addresses you search or request reports for",
+          "Professional information: If you're a real estate agent, your brokerage and license information",
+          "Communication content: Questions, feedback, or requests you send us",
+        ],
+      },
+
+      { kind: "subhead", text: "C.2 Information Collected Automatically" },
+      {
+        kind: "list",
+        items: [
+          "Usage data: Pages you visit, features you use, time spent on site",
+          "Device information: Browser type, operating system, IP address",
+          "Cookies: Small files that help us remember your preferences and understand how you use our site",
+        ],
+      },
+
+      {
+        kind: "callout",
+        tone: "info",
+        title: "We don't collect",
+        text:
+          "Credit card information (handled by our payment processor), social security numbers, precise geolocation data, or anything not directly needed to provide our service.",
+      },
+    ],
+  },
+
+  // ─────────────────────────────────────────────────────────────
+  {
+    id: "how-we-use",
+    letter: "D",
+    label: "Use",
+    title: "How We Use Your Information.",
+    summary:
+      "We use your information to generate and deliver reports, communicate with you, improve our service, and comply with legal obligations. We do not sell your personal information.",
+    body: [
+      "We use your information to:",
+      {
+        kind: "list",
+        items: [
+          "Generate and deliver property reports you request",
+          "Communicate with you about your account, reports, or questions",
+          "Improve our service by understanding how people use Landset",
+          "Send occasional updates about new features or offerings (you can opt out anytime)",
+          "Comply with legal obligations when required",
+        ],
+      },
+
+      { kind: "subhead", text: "We do not" },
+      {
+        kind: "list",
+        items: [
+          "Sell your personal information to anyone",
+          "Share your contact information with real estate agents without your permission",
+          "Use your data for purposes unrelated to property intelligence",
+        ],
+      },
+    ],
+  },
+
+  // ─────────────────────────────────────────────────────────────
+  {
+    id: "how-we-share",
+    letter: "E",
+    label: "Sharing",
+    title: "How We Share Information.",
+    summary:
+      "We share information with your permission, with service providers who help us run Landset, when legally required, and potentially in a business transfer.",
+    body: [
+      { kind: "subhead", text: "E.1 With Your Permission" },
+      "If you're a homebuyer working with an agent, and that agent requests a report on your behalf, we'll share the report with them. That's the whole point — but the agent's use of that report is governed by their professional obligations to you, not by us.",
+
+      { kind: "subhead", text: "E.2 With Service Providers" },
+      "We work with trusted companies who help us run Landset:",
+      {
+        kind: "list",
+        items: [
+          "Hosting providers (to keep the website running)",
+          "Payment processors (to handle transactions securely)",
+          "Email services (to send you reports and updates)",
+          "Analytics tools (to understand how our site is used)",
+        ],
+      },
+      "These providers are contractually required to protect your data and can only use it to help us deliver our service.",
+
+      { kind: "subhead", text: "E.3 When Legally Required" },
+      "We may disclose information when required by law, court order, or to protect our rights and safety or the rights and safety of others.",
+
+      { kind: "subhead", text: "E.4 In a Business Transfer" },
+      "If Landset is acquired or merges with another company, your information may transfer to the new owner.",
+    ],
+  },
+
+  // ─────────────────────────────────────────────────────────────
+  {
+    id: "property-vs-personal",
+    letter: "F",
+    label: "Data Types",
+    title: "Public Property Data vs. Your Personal Data.",
+    summary:
+      "Property data comes from public sources and isn't personal information about you. Your personal data (contact info, account details, search history) is private and protected under this policy.",
+    body: [
+      "Property data (permits, ownership records, tax assessments) comes from public sources. This information is part of the public record and isn't \"personal information\" about you under most privacy laws.",
+      "Your personal data (contact info, account details, search history) is private and protected under this policy.",
+      "When we generate a report, we're showing you public property data in context — not collecting new information about property owners.",
+    ],
+  },
+
+  // ─────────────────────────────────────────────────────────────
+  {
+    id: "cookies",
+    letter: "G",
+    label: "Cookies",
+    title: "Cookies and Tracking.",
+    summary:
+      "We use cookies to remember your login and preferences, understand which features are most useful, and improve site performance. You can block or delete cookies in your browser settings.",
+    body: [
+      "We use cookies to:",
+      {
+        kind: "list",
+        items: [
+          "Remember your login and preferences",
+          "Understand which features are most useful",
+          "Improve site performance",
+        ],
+      },
+      {
+        kind: "callout",
+        tone: "info",
+        title: "You control cookies",
+        text:
+          "Most browsers let you block or delete cookies. If you do, some features may not work as smoothly.",
+      },
+      "We use Google Analytics to understand site traffic. You can opt out at: https://tools.google.com/dlpage/gaoptout",
+    ],
+  },
+
+  // ─────────────────────────────────────────────────────────────
+  {
+    id: "your-rights",
+    letter: "H",
+    label: "Your Rights",
+    title: "Your Rights and Choices.",
+    summary:
+      "You can access and update your information, request deletion, opt out of marketing, and exercise additional state-specific privacy rights including CCPA, GDPR, and other state laws.",
+    body: [
+      { kind: "subhead", text: "H.1 Access and Corrections" },
+      "You can log into your account anytime to view or update your contact information. If you don't have an account or need help, email us at privacy@landset.co.",
+
+      { kind: "subhead", text: "H.2 Delete Your Data" },
+      "You can request that we delete your account and personal information. We'll honor this unless we need to keep certain records for legal or business reasons (like completed transactions or disputes).",
+
+      { kind: "subhead", text: "H.3 Opt Out of Marketing" },
+      "Don't want to hear from us? Click \"unsubscribe\" in any marketing email, or email privacy@landset.co. You'll still receive important account-related messages.",
+
+      { kind: "subhead", text: "H.4 California Residents" },
+      "If you're in California, you have additional rights under the California Consumer Privacy Act (CCPA):",
+      {
+        kind: "list",
+        items: [
+          "Right to know what personal information we collect and how we use it",
+          "Right to delete your personal information (with some exceptions)",
+          "Right to opt out of the sale of your information (note: we don't sell your information)",
+          "Right to non-discrimination for exercising your privacy rights",
+        ],
+      },
+      "To exercise these rights, email privacy@landset.co. We'll respond within 45 days. We may need to verify your identity before fulfilling your request.",
+
+      { kind: "subhead", text: "H.5 Virginia, Colorado, Connecticut, Utah, and Other State Residents" },
+      "Many states now have privacy laws similar to California's. If you live in one of these states, you have rights to access, correct, delete, and opt out of certain data uses. Contact us at privacy@landset.co to exercise these rights.",
+    ],
+  },
+
+  // ─────────────────────────────────────────────────────────────
+  {
+    id: "data-security",
+    letter: "I",
+    label: "Security",
+    title: "Data Security.",
+    summary:
+      "We use industry-standard security measures including encryption and restricted access. While we do our best to protect your data, no system is 100% secure.",
+    body: [
+      "We use industry-standard security measures to protect your information:",
+      {
+        kind: "list",
+        items: [
+          "Encryption for data in transit and at rest",
+          "Restricted access (only employees who need it)",
+          "Regular security assessments",
+        ],
+      },
+      {
+        kind: "callout",
+        tone: "warning",
+        title: "Security Limitation",
+        text:
+          "No system is 100% secure. While we do our best to protect your data, we can't guarantee absolute security.",
+      },
+    ],
+  },
+
+  // ─────────────────────────────────────────────────────────────
+  {
+    id: "children",
+    letter: "J",
+    label: "Children",
+    title: "Children's Privacy.",
+    summary:
+      "Landset is not intended for anyone under 18. We don't knowingly collect information from children.",
+    body: [
+      "Landset is not intended for anyone under 18. We don't knowingly collect information from children. If we learn we've collected a child's information, we'll delete it immediately.",
+    ],
+  },
+
+  // ─────────────────────────────────────────────────────────────
+  {
+    id: "policy-changes",
+    letter: "K",
+    label: "Changes",
+    title: "Changes to This Policy.",
+    summary:
+      "We may update this policy as our business evolves or laws change. Significant changes will be communicated by email or prominent website notice.",
+    body: [
+      "We may update this policy as our business evolves or laws change. If we make significant changes, we'll notify you by email or a prominent notice on our website. The \"Last Updated\" date at the top shows when this policy was last revised.",
+    ],
+  },
+
+  // ─────────────────────────────────────────────────────────────
+  {
+    id: "third-party-links",
+    letter: "L",
+    label: "Third Parties",
+    title: "Third-Party Links.",
+    summary:
+      "Our site may link to other websites. We're not responsible for their privacy practices.",
+    body: [
+      "Our site may link to other websites (data providers, partner services, etc.). We're not responsible for their privacy practices. Read their policies before sharing your information.",
+    ],
+  },
+
+  // ─────────────────────────────────────────────────────────────
+  {
+    id: "international",
+    letter: "M",
+    label: "International",
+    title: "International Users.",
+    summary:
+      "Landset is based in the United States. If you're outside the U.S., your information will be transferred to and processed in the U.S.",
+    body: [
+      "Landset is based in the United States. If you're outside the U.S., your information will be transferred to and processed in the U.S., where data protection laws may differ from your country's laws.",
+    ],
+  },
+
+  // ─────────────────────────────────────────────────────────────
+  {
+    id: "contact",
+    letter: "N",
+    label: "Contact",
+    title: "Contact Us.",
+    summary:
+      "Questions, concerns, or requests? Email us at privacy@landset.co. We'll respond within 30 days.",
+    body: [
+      "Questions, concerns, or requests? We're here to help.",
+      "Email: privacy@landset.co\nMail: Landset\nAustin, TX",
+      "For data subject access requests or privacy complaints, please use the email address above. We'll respond within 30 days.",
+    ],
+  },
+
+  // ─────────────────────────────────────────────────────────────
+  {
+    id: "ccpa-disclosure",
+    letter: "O",
+    label: "CCPA Details",
+    title: "Additional Technical Disclosure (CCPA/State Law Compliance).",
+    summary:
+      "Detailed breakdown of personal information categories we collect, how we use each category, with whom we share information, and our data retention periods.",
+    body: [
+      { kind: "subhead", text: "O.1 Categories of Personal Information We Collect" },
+      "In the past 12 months, we have collected the following categories of personal information:",
+      {
+        kind: "list",
+        items: [
+          "Identifiers: Name, email, phone, IP address",
+          "Customer Records: Billing address, payment method (via processor)",
+          "Commercial Information: Reports purchased, search history",
+          "Internet Activity: Browsing history, pages visited",
+          "Geolocation Data: General location from IP address",
+          "Professional Information: Real estate license, brokerage (agents only)",
+          "Inferences: Property search patterns, interests",
+        ],
+      },
+      {
+        kind: "callout",
+        tone: "info",
+        title: "We do not collect",
+        text:
+          "Biometric data, precise geolocation, health information, or sensitive personal data.",
+      },
+
+      { kind: "subhead", text: "O.2 How We Use Each Category" },
+      {
+        kind: "list",
+        items: [
+          "Identifiers: Account creation, communication, report delivery",
+          "Customer Records: Payment processing, billing",
+          "Commercial Information: Service delivery, recommendations",
+          "Internet Activity: Site improvement, analytics",
+          "Geolocation: Local property search results",
+          "Professional Information: Agent verification",
+          "Inferences: Product recommendations",
+        ],
+      },
+
+      { kind: "subhead", text: "O.3 With Whom We Share Information" },
+      "In the past 12 months, we have shared personal information with:",
+      {
+        kind: "list",
+        items: [
+          "Service providers: Hosting, payment processing, email delivery",
+          "Analytics providers: Google Analytics (anonymized)",
+        ],
+      },
+      {
+        kind: "callout",
+        tone: "info",
+        title: "We do not sell personal information",
+        text: "We do not sell personal information to anyone.",
+      },
+
+      { kind: "subhead", text: "O.4 Data Retention" },
+      "We keep your information for as long as your account is active, plus:",
+      {
+        kind: "list",
+        items: [
+          "Contact information: Until you request deletion or 2 years of inactivity",
+          "Transaction records: 7 years (for legal/tax compliance)",
+          "Usage logs: 90 days",
+        ],
+      },
+    ],
+  },
+
+  // ─────────────────────────────────────────────────────────────
+  {
+    id: "gdpr",
+    letter: "P",
+    label: "GDPR",
+    title: "European Economic Area (EEA) Users.",
+    summary:
+      "If you're in the EEA, you have additional rights under GDPR including access, correction, deletion, restriction, portability, objection, and withdrawal of consent.",
+    body: [
+      "If you're in the EEA, you have additional rights under GDPR:",
+      {
+        kind: "list",
+        items: [
+          "Right to access your data",
+          "Right to correct inaccurate data",
+          "Right to delete your data (with exceptions)",
+          "Right to restrict processing",
+          "Right to data portability",
+          "Right to object to certain processing",
+          "Right to withdraw consent",
+        ],
+      },
+
+      { kind: "subhead", text: "Legal basis for processing" },
+      "We process your data based on:",
+      {
+        kind: "list",
+        items: [
+          "Contract performance (providing the service you requested)",
+          "Legitimate interests (improving our service, preventing fraud)",
+          "Consent (marketing communications)",
+        ],
+      },
+
+      { kind: "subhead", text: "Data transfers" },
+      "Your data may be transferred to the United States. We use standard contractual clauses approved by the European Commission to protect these transfers.",
+      "To exercise your rights or lodge a complaint with a supervisory authority, contact privacy@landset.co.",
+    ],
+  },
+
+  // ─────────────────────────────────────────────────────────────
+  {
+    id: "commitment",
+    letter: "Q",
+    label: "Commitment",
+    title: "Our Commitment.",
+    summary:
+      "We built Landset because we believe homebuyers deserve better information. That same principle guides how we handle your data: transparently, securely, and only in ways that serve you.",
+    body: [
+      "We built Landset because we believe homebuyers deserve better information. That same principle guides how we handle your data: transparently, securely, and only in ways that serve you. If you ever have questions or concerns, we want to hear from you.",
+      "Email us anytime: privacy@landset.co",
+    ],
+  },
+];
+
+// ═══════════════════════════════════════════════════════════════
+// SHARED COMPONENTS (imported from same codebase as terms.html)
+// ═══════════════════════════════════════════════════════════════
+
+const { useState, useEffect, useRef, useMemo, useCallback } = React;
+
+// ─────── Theme definitions ─────────
+const THEMES = {
+  light: {
+    bg: "#F6F3EC",
+    paper: "#FEFCF8",
+    rule: "rgba(0,0,0,0.08)",
+    ink: "#171614",
+    inkSoft: "#3C3A35",
+    inkFaint: "#8A867C",
+    inkMicro: "#B4B0A3",
+    calloutBg: "rgba(255,255,255,0.6)",
+    calloutRule: "rgba(0,0,0,0.1)",
+  },
+  sepia: {
+    bg: "#E8E3D5",
+    paper: "#F4F0E6",
+    rule: "rgba(0,0,0,0.12)",
+    ink: "#171614",
+    inkSoft: "#3C3A35",
+    inkFaint: "#7A766C",
+    inkMicro: "#A8A496",
+    calloutBg: "rgba(255,255,255,0.4)",
+    calloutRule: "rgba(0,0,0,0.14)",
+  },
+  dark: {
+    bg: "#1A1916",
+    paper: "#222018",
+    rule: "rgba(255,255,255,0.08)",
+    ink: "#E8E5DC",
+    inkSoft: "#B8B5AD",
+    inkFaint: "#75726B",
+    inkMicro: "#4A4843",
+    calloutBg: "rgba(255,255,255,0.04)",
+    calloutRule: "rgba(255,255,255,0.12)",
+  },
+};
+
+const DENSITIES = {
+  compact: {
+    bodyFs: 14,
+    headFs: 24,
+    lineHeight: 1.5,
+    sectionGap: 48,
+  },
+  comfortable: {
+    bodyFs: 16,
+    headFs: 28,
+    lineHeight: 1.6,
+    sectionGap: 56,
+  },
+  airy: {
+    bodyFs: 18,
+    headFs: 32,
+    lineHeight: 1.7,
+    sectionGap: 64,
+  },
+};
+
+// ─────── Tweaks (user preferences stored in localStorage) ─────────
+function useTweaks() {
+  const [t, setT] = useState(() => {
+    try {
+      const saved = localStorage.getItem("landsetPrivacyTweaks");
+      return saved ? JSON.parse(saved) : {
+        theme: "light",
+        accent: "#5A7F5D",
+        density: "comfortable",
+        disclaimerProminence: "highlighted",
+        showLegalBody: true,
+      };
+    } catch {
+      return {
+        theme: "light",
+        accent: "#5A7F5D",
+        density: "comfortable",
+        disclaimerProminence: "highlighted",
+        showLegalBody: true,
+      };
+    }
+  });
+
+  const setTweak = useCallback((key, val) => {
+    setT((prev) => {
+      const next = { ...prev, [key]: val };
+      localStorage.setItem("landsetPrivacyTweaks", JSON.stringify(next));
+      return next;
+    });
+  }, []);
+
+  return [t, setTweak];
+}
+
+// ─────── Obfuscated email component ─────────
+// Renders an email address with multiple layers of bot-resistance:
+//   1. No mailto: in static markup (assembled on click in JS)
+//   2. user / domain split into separate spans with hidden honeypot text between
+//   3. The @ glyph is rendered separately from a CSS pseudo-element so the
+//      string "privacy@landset.co" never appears as contiguous text in the DOM
+//   4. Honeypot decoy address inserted with display:none — scrapers that
+//      strip CSS will grab the wrong address
+// Humans see "privacy@landset.co" and clicking opens their mail client.
+function ObfuscatedEmail({ user = "privacy", domain = "landset.co", style, children, decoyOnly = false }) {
+  const handleClick = (e) => {
+    e.preventDefault();
+    // Build the address only at click time, never in static markup.
+    const at = String.fromCharCode(64);
+    const addr = user + at + domain;
+    window.location.href = "mai" + "lto:" + addr;
+  };
+  const honeypot = { display: "none" };
+  const linkStyle = {
+    cursor: "pointer",
+    ...style,
+  };
+  // Reverse the FULL address in one span so the bidi-override applies
+  // coherently to the whole string. Visually it reads "privacy@landset.co";
+  // textContent of the span returns the reversed garbage.
+  const fullReversed = (user + "\u0040" + domain).split("").reverse().join("");
+
+  return (
+    <a
+      href="#contact"
+      onClick={handleClick}
+      style={linkStyle}
+      data-em-u={btoa(user)}
+      data-em-d={btoa(domain)}
+    >
+      {/* Honeypot decoy — invisible to humans, scrapers grab it first */}
+      <span style={honeypot} aria-hidden="true">do-not-spam-NOSPAM-decoy@example.invalid</span>
+      {/* Real address: one span, reversed, flipped back with CSS */}
+      <span
+        aria-hidden="true"
+        style={{ unicodeBidi: "bidi-override", direction: "rtl" }}
+      >
+        {fullReversed}
+      </span>
+      {/* Trailing honeypot */}
+      <span style={honeypot} aria-hidden="true">REMOVE-NOSPAM-TRAILER</span>
+      {/* Screen-reader-only readable version */}
+      <span style={{
+        position: "absolute",
+        width: 1,
+        height: 1,
+        overflow: "hidden",
+        clip: "rect(0,0,0,0)",
+        whiteSpace: "nowrap",
+      }}>
+        {user} at {domain.replace(/\./g, " dot ")}
+      </span>
+    </a>
+  );
+}
+
+// ─────── Callout (info/warning boxes) ─────────
+function Callout({ block, t, prominence }) {
+  let bg = t.calloutBg;
+  let border = t.calloutRule;
+  let iconBg = "rgba(90, 127, 93, 0.12)";
+  let iconColor = "#5A7F5D";
+
+  if (block.tone === "warning") {
+    if (prominence === "highlighted") {
+      bg = "rgba(255, 160, 0, 0.08)";
+      border = "rgba(255, 160, 0, 0.2)";
+    } else if (prominence === "aggressive") {
+      bg = "rgba(255, 100, 0, 0.12)";
+      border = "rgba(255, 100, 0, 0.3)";
+    }
+    iconBg = "rgba(255, 160, 0, 0.12)";
+    iconColor = "#B8860B";
+  }
+
+  return (
+    <div style={{
+      background: bg,
+      border: `1px solid ${border}`,
+      borderRadius: 8,
+      padding: "18px 20px",
+      margin: "0 0 18px",
+    }}>
+      <div style={{
+        display: "flex",
+        gap: 14,
+        alignItems: "start",
+      }}>
+        <div style={{
+          width: 24,
+          height: 24,
+          borderRadius: "50%",
+          background: iconBg,
+          flexShrink: 0,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          color: iconColor,
+          fontSize: 14,
+          fontWeight: 600,
+        }}>
+          {block.tone === "warning" ? "!" : "i"}
+        </div>
+        <div style={{ flex: 1, minWidth: 0 }}>
+          {block.title && (
+            <div style={{
+              fontWeight: 600,
+              marginBottom: 6,
+              color: t.ink,
+            }}>
+              {block.title}
+            </div>
+          )}
+          <div style={{
+            fontSize: 15,
+            lineHeight: 1.55,
+            color: t.inkSoft,
+          }}>
+            {block.text}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─────── Text rendering (auto-obfuscates emails) ─────────
+function renderInlineText(text, keyPrefix) {
+  const re = /([a-z][a-z0-9._-]*)@(landset\.co)/gi;
+  const parts = [];
+  let last = 0;
+  let m;
+  let idx = 0;
+  while ((m = re.exec(text)) !== null) {
+    if (m.index > last) parts.push(text.slice(last, m.index));
+    parts.push(
+      <ObfuscatedEmail
+        key={`${keyPrefix}-em-${idx++}`}
+        user={m[1]}
+        domain={m[2]}
+        style={{ color: "inherit", textDecoration: "underline", textUnderlineOffset: 3 }}
+      />
+    );
+    last = m.index + m[0].length;
+  }
+  if (last < text.length) parts.push(text.slice(last));
+  return parts.length > 0 ? parts : text;
+}
+
+// ─────── Section body block renderer ─────────
+function renderBlock(block, i, t, prominence) {
+  if (typeof block === "string") {
+    const content = renderInlineText(block, `b-${i}`);
+    if (block.includes("\n")) {
+      return (
+        <p key={i} style={{ margin: "0 0 18px", whiteSpace: "pre-line" }}>
+          {content}
+        </p>
+      );
+    }
+    return <p key={i} style={{ margin: "0 0 18px" }}>{content}</p>;
+  }
+  if (block.kind === "callout") {
+    return <Callout key={i} block={block} t={t} prominence={prominence} />;
+  }
+  if (block.kind === "subhead") {
+    return (
+      <div key={i} style={{
+        fontFamily: "var(--mono)",
+        fontSize: 11,
+        letterSpacing: ".14em",
+        textTransform: "uppercase",
+        color: t.inkFaint,
+        margin: "24px 0 12px",
+      }}>
+        {block.text}
+      </div>
+    );
+  }
+  if (block.kind === "list") {
+    return (
+      <ul key={i} style={{
+        margin: "0 0 18px",
+        paddingLeft: 0,
+        listStyle: "none",
+        display: "grid",
+        gap: 10,
+      }}>
+        {block.items.map((item, j) => (
+          <li key={j} style={{
+            display: "grid",
+            gridTemplateColumns: "auto 1fr",
+            gap: 14,
+            alignItems: "start",
+          }}>
+            <span style={{
+              fontFamily: "var(--mono)",
+              fontSize: 12,
+              color: t.inkFaint,
+              paddingTop: 3,
+              minWidth: 22,
+            }}>
+              {String(j + 1).padStart(2, "0")}
+            </span>
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    );
+  }
+  return null;
+}
+
+// ─────── Section component ─────────
+function Section({ section, t, density, prominence, showLegal, accent, isOpen, onToggle, registerRef }) {
+  const ref = useRef(null);
+  useEffect(() => {
+    if (ref.current) registerRef(section.id, ref.current);
+  }, [section.id, registerRef]);
+
+  return (
+    <section
+      ref={ref}
+      id={section.id}
+      style={{
+        paddingTop: density.sectionGap,
+        scrollMarginTop: 24,
+      }}
+    >
+      <div style={{
+        display: "grid",
+        gridTemplateColumns: "auto 1fr auto",
+        gap: 20,
+        alignItems: "baseline",
+        borderTop: `1px solid ${t.rule}`,
+        paddingTop: 20,
+        marginBottom: 24,
+      }}>
+        <div style={{
+          fontFamily: "var(--mono)",
+          fontSize: 12,
+          letterSpacing: ".14em",
+          textTransform: "uppercase",
+          color: accent,
+          fontWeight: 500,
+        }}>
+          {section.letter} · {section.label}
+        </div>
+        <div />
+        <a
+          href={`#${section.id}`}
+          style={{
+            fontFamily: "var(--mono)",
+            fontSize: 11,
+            letterSpacing: ".14em",
+            textTransform: "uppercase",
+            color: t.inkFaint,
+            textDecoration: "none",
+          }}
+          onClick={(e) => {
+            e.preventDefault();
+            const url = `${location.origin}${location.pathname}#${section.id}`;
+            try { navigator.clipboard?.writeText(url); } catch (_) {}
+            history.replaceState(null, "", `#${section.id}`);
+            const el = document.getElementById(section.id);
+            if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+          }}
+        >
+          §{section.letter}
+        </a>
+      </div>
+
+      <h2 style={{
+        fontSize: density.headFs,
+        lineHeight: 1.12,
+        letterSpacing: "-0.02em",
+        margin: "0 0 20px",
+        color: t.ink,
+        fontWeight: 600,
+        maxWidth: "26ch",
+      }}>
+        {section.title}
+      </h2>
+
+      <div style={{
+        fontSize: density.bodyFs + 2,
+        lineHeight: 1.5,
+        color: t.inkSoft,
+        margin: "0 0 28px",
+        maxWidth: "62ch",
+        fontStyle: "normal",
+        paddingLeft: 16,
+        borderLeft: `2px solid ${accent}`,
+      }}>
+        {section.summary}
+      </div>
+
+      {showLegal && (
+        <div style={{
+          fontSize: density.bodyFs,
+          lineHeight: density.lineHeight,
+          color: t.inkSoft,
+          maxWidth: "68ch",
+        }}>
+          {section.body.map((block, i) => renderBlock(block, i, t, prominence))}
+        </div>
+      )}
+    </section>
+  );
+}
+
+// ─────── Table of Contents ─────────
+function TOC({ sections, t, accent, activeId, density, lastUpdated }) {
+  return (
+    <aside style={{
+      position: "sticky",
+      top: 24,
+      height: "fit-content",
+      paddingTop: 56,
+      paddingRight: 24,
+      borderRight: `1px solid ${t.rule}`,
+      alignSelf: "start",
+    }}>
+      <div style={{
+        fontFamily: "var(--mono)",
+        fontSize: 11,
+        letterSpacing: ".14em",
+        textTransform: "uppercase",
+        color: t.inkMicro,
+        marginBottom: 8,
+      }}>
+        Updated {lastUpdated}
+      </div>
+
+      <div style={{
+        fontFamily: "var(--mono)",
+        fontSize: 11,
+        letterSpacing: ".14em",
+        textTransform: "uppercase",
+        color: t.inkFaint,
+        marginBottom: 24,
+      }}>
+        Privacy Policy
+      </div>
+
+      <nav style={{ display: "grid", gap: 14 }}>
+        {sections.map((s) => {
+          const isActive = s.id === activeId;
+          return (
+            <a
+              key={s.id}
+              href={`#${s.id}`}
+              style={{
+                display: "block",
+                fontSize: 14,
+                lineHeight: 1.4,
+                color: isActive ? accent : t.inkSoft,
+                textDecoration: "none",
+                fontWeight: isActive ? 500 : 400,
+                transition: "color 0.15s",
+              }}
+              onMouseEnter={(e) => {
+                if (!isActive) e.currentTarget.style.color = t.ink;
+              }}
+              onMouseLeave={(e) => {
+                if (!isActive) e.currentTarget.style.color = t.inkSoft;
+              }}
+            >
+              <span style={{
+                fontFamily: "var(--mono)",
+                fontSize: 11,
+                marginRight: 8,
+                color: t.inkFaint,
+              }}>
+                {s.letter}
+              </span>
+              {s.label}
+            </a>
+          );
+        })}
+      </nav>
+    </aside>
+  );
+}
+
+// ─────── Site Header ─────────
+function SiteHeader({ theme, accent }) {
+  const navLinks = [
+    { label: "What's in a brief", href: "https://www.landset.co/#brief" },
+    { label: "How it works", href: "https://www.landset.co/#how" },
+    { label: "About", href: "https://www.landset.co/about.html" },
+  ];
+  return (
+    <header style={{
+      borderBottom: `1px solid ${theme.rule}`,
+      background: theme.bg,
+      position: "sticky",
+      top: 0,
+      zIndex: 50,
+      backdropFilter: "saturate(140%) blur(8px)",
+      WebkitBackdropFilter: "saturate(140%) blur(8px)",
+    }}>
+      <div style={{
+        maxWidth: 1320,
+        margin: "0 auto",
+        padding: "20px 48px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        gap: 32,
+      }}>
+        <a href="https://www.landset.co" style={{
+          color: theme.ink,
+          textDecoration: "none",
+          display: "flex",
+          alignItems: "center",
+          gap: 14,
+        }}>
+          <div style={{ height: 22, color: theme.ink }}>
+            <svg viewBox="0 0 1997 360" style={{ height: 22, display: "block" }} aria-label="Landset">
+              <use href="#landset-wordmark" />
+            </svg>
+          </div>
+        </a>
+        <nav style={{
+          display: "flex",
+          gap: 28,
+          alignItems: "center",
+        }}>
+          {navLinks.map((l) => (
+            <a
+              key={l.label}
+              href={l.href}
+              style={{
+                color: theme.inkSoft,
+                textDecoration: "none",
+                fontSize: 13.5,
+                letterSpacing: "-0.005em",
+              }}
+            >
+              {l.label}
+            </a>
+          ))}
+          <a
+            href="https://www.landset.co/#early-access"
+            style={{
+              color: theme.ink,
+              textDecoration: "none",
+              fontSize: 13.5,
+              fontWeight: 500,
+              borderBottom: `1px solid ${accent}`,
+              paddingBottom: 2,
+              letterSpacing: "-0.005em",
+            }}
+          >
+            Get early access →
+          </a>
+        </nav>
+      </div>
+    </header>
+  );
+}
+
+// ─────── Site Footer ─────────
+function SiteFooter({ theme, accent }) {
+  const cols = [
+    {
+      title: "Product",
+      links: [
+        { label: "What's in a brief", href: "https://www.landset.co/#brief" },
+        { label: "How it works", href: "https://www.landset.co/#how" },
+        { label: "Early access", href: "https://www.landset.co/#early-access" },
+        { label: "Sample report", href: "https://www.landset.co/#" },
+      ],
+    },
+    {
+      title: "Company",
+      links: [
+        { label: "About", href: "https://www.landset.co/about.html" },
+        { label: "Privacy", href: "/privacy.html" },
+        { label: "Terms", href: "/terms.html" },
+      ],
+    },
+    {
+      title: "Connect",
+      links: [
+        { label: "Contact form", href: "https://www.landset.co/#contact" },
+        { label: "LinkedIn", href: "https://www.linkedin.com/company/landset" },
+      ],
+    },
+  ];
+  return (
+    <footer style={{
+      borderTop: `1px solid ${theme.rule}`,
+      background: theme.bg,
+      marginTop: 96,
+    }}>
+      <div style={{
+        maxWidth: 1320,
+        margin: "0 auto",
+        padding: "72px 48px 56px",
+        display: "grid",
+        gridTemplateColumns: "1.4fr 1fr 1fr 1fr",
+        gap: 56,
+        alignItems: "start",
+      }}>
+        <div>
+          <div style={{ height: 32, color: theme.ink, marginBottom: 18 }}>
+            <svg viewBox="0 0 1997 360" style={{ height: 32, display: "block" }} aria-label="Landset">
+              <use href="#landset-wordmark" />
+            </svg>
+          </div>
+          <div style={{
+            fontSize: 14,
+            color: theme.inkSoft,
+            lineHeight: 1.5,
+            maxWidth: "28ch",
+          }}>
+            Empowering informed property decisions.
+          </div>
+        </div>
+        {cols.map((c) => (
+          <div key={c.title}>
+            <div style={{
+              fontFamily: "var(--mono)",
+              fontSize: 10.5,
+              letterSpacing: ".14em",
+              textTransform: "uppercase",
+              color: theme.inkFaint,
+              marginBottom: 16,
+            }}>
+              {c.title}
+            </div>
+            <ul style={{
+              listStyle: "none",
+              padding: 0,
+              margin: 0,
+              display: "grid",
+              gap: 10,
+            }}>
+              {c.links.map((l) => (
+                <li key={l.label}>
+                  <a
+                    href={l.href}
+                    style={{
+                      color: theme.inkSoft,
+                      textDecoration: "none",
+                      fontSize: 13.5,
+                    }}
+                  >
+                    {l.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+      <div style={{
+        maxWidth: 1320,
+        margin: "0 auto",
+        padding: "0 48px 48px",
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "baseline",
+        gap: 24,
+        fontFamily: "var(--mono)",
+        fontSize: 10.5,
+        letterSpacing: ".14em",
+        textTransform: "uppercase",
+        color: theme.inkFaint,
+      }}>
+        <div>© 2026 Landset LLC · Austin, Texas</div>
+        <div>Not legal advice</div>
+      </div>
+    </footer>
+  );
+}
+
+// ─────── Tweaks Panel ─────────
+function TweaksPanel({ title, children }) {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <>
+      <button
+        onClick={() => setOpen(!open)}
+        style={{
+          position: "fixed",
+          bottom: 24,
+          right: 24,
+          width: 48,
+          height: 48,
+          borderRadius: "50%",
+          background: "#171614",
+          color: "#F6F3EC",
+          border: "none",
+          cursor: "pointer",
+          fontSize: 20,
+          fontWeight: 600,
+          boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
+          zIndex: 1000,
+        }}
+      >
+        ⚙
+      </button>
+
+      {open && (
+        <div
+          style={{
+            position: "fixed",
+            bottom: 88,
+            right: 24,
+            width: 280,
+            background: "#FEFCF8",
+            border: "1px solid rgba(0,0,0,0.1)",
+            borderRadius: 12,
+            boxShadow: "0 8px 24px rgba(0,0,0,0.15)",
+            padding: 20,
+            zIndex: 1000,
+          }}
+        >
+          <div style={{
+            fontFamily: "var(--mono)",
+            fontSize: 11,
+            letterSpacing: ".14em",
+            textTransform: "uppercase",
+            marginBottom: 16,
+            fontWeight: 600,
+          }}>
+            {title}
+          </div>
+          {children}
+        </div>
+      )}
+    </>
+  );
+}
+
+function TweakSection({ label, children }) {
+  return (
+    <div style={{ marginBottom: 20 }}>
+      <div style={{
+        fontFamily: "var(--mono)",
+        fontSize: 10,
+        letterSpacing: ".14em",
+        textTransform: "uppercase",
+        color: "#8A867C",
+        marginBottom: 12,
+      }}>
+        {label}
+      </div>
+      {children}
+    </div>
+  );
+}
+
+function TweakRadio({ label, value, options, onChange }) {
+  return (
+    <div style={{ marginBottom: 12 }}>
+      <div style={{ fontSize: 13, marginBottom: 6, color: "#3C3A35" }}>{label}</div>
+      <div style={{ display: "flex", gap: 8 }}>
+        {options.map((opt) => (
+          <button
+            key={opt.value}
+            onClick={() => onChange(opt.value)}
+            style={{
+              padding: "6px 12px",
+              fontSize: 12,
+              border: `1px solid ${value === opt.value ? "#5A7F5D" : "rgba(0,0,0,0.12)"}`,
+              background: value === opt.value ? "#5A7F5D" : "transparent",
+              color: value === opt.value ? "#fff" : "#3C3A35",
+              borderRadius: 6,
+              cursor: "pointer",
+              flex: 1,
+            }}
+          >
+            {opt.label}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function TweakColor({ label, value, options, onChange }) {
+  return (
+    <div style={{ marginBottom: 12 }}>
+      <div style={{ fontSize: 13, marginBottom: 6, color: "#3C3A35" }}>{label}</div>
+      <div style={{ display: "flex", gap: 8 }}>
+        {options.map((color) => (
+          <button
+            key={color}
+            onClick={() => onChange(color)}
+            style={{
+              width: 32,
+              height: 32,
+              background: color,
+              border: `2px solid ${value === color ? "#171614" : "rgba(0,0,0,0.12)"}`,
+              borderRadius: 6,
+              cursor: "pointer",
+            }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function TweakToggle({ label, value, onChange }) {
+  return (
+    <div style={{
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      marginBottom: 12,
+    }}>
+      <div style={{ fontSize: 13, color: "#3C3A35" }}>{label}</div>
+      <button
+        onClick={() => onChange(!value)}
+        style={{
+          width: 44,
+          height: 24,
+          borderRadius: 12,
+          background: value ? "#5A7F5D" : "rgba(0,0,0,0.12)",
+          border: "none",
+          cursor: "pointer",
+          position: "relative",
+          transition: "background 0.2s",
+        }}
+      >
+        <div style={{
+          width: 18,
+          height: 18,
+          borderRadius: "50%",
+          background: "#fff",
+          position: "absolute",
+          top: 3,
+          left: value ? 23 : 3,
+          transition: "left 0.2s",
+        }} />
+      </button>
+    </div>
+  );
+}
+
+// ─────── Main App ─────────
+function App() {
+  const [t, setTweak] = useTweaks();
+  const theme = THEMES[t.theme];
+  const density = DENSITIES[t.density];
+  const accent = t.accent;
+  const prominence = t.disclaimerProminence;
+  const showLegal = t.showLegalBody;
+  const sections = PRIVACY_SECTIONS;
+
+  const [activeId, setActiveId] = useState("");
+  const [openMap, setOpenMap] = useState({});
+  const refsMap = useRef({});
+
+  const registerRef = useCallback((id, el) => {
+    refsMap.current[id] = el;
+  }, []);
+
+  const toggle = useCallback((id) => {
+    setOpenMap((prev) => ({ ...prev, [id]: !prev[id] }));
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting && e.target.id) {
+            setActiveId(e.target.id);
+          }
+        });
+      },
+      { rootMargin: "-80px 0px -50% 0px" }
+    );
+
+    Object.values(refsMap.current).forEach((el) => {
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.style.setProperty("--mono", "'Geist Mono', ui-monospace, monospace");
+  }, []);
+
+  return (
+    <div style={{ background: theme.bg, minHeight: "100vh" }}>
+      {/* SVG sprite for wordmark reuse */}
+      <svg width="0" height="0" style={{ position: "absolute" }} aria-hidden="true">
+        <defs>
+          <symbol id="landset-wordmark" viewBox="0 0 1997 360">
+            <path d="M1997 119.99H1947.04V264.107H1919.9V119.99H1869.95V95.8906H1997V119.99Z" fill="currentColor" />
+            <path d="M1758.56 264.107H1651.2V95.8906H1758.56V119.99H1678.34V166.985H1751.11V191.085H1678.34V240.007H1758.56V264.107Z" fill="currentColor" />
+            <path d="M1466.35 267C1452.42 267 1440.49 264.429 1430.56 259.288C1420.64 253.986 1412.15 247.078 1405.1 238.562L1424.08 220.97C1429.84 228.199 1436.25 233.662 1443.29 237.357C1450.5 241.053 1458.66 242.9 1467.79 242.9C1478.52 242.9 1486.6 240.49 1492.05 235.67C1497.49 230.69 1500.21 224.183 1500.21 216.15C1500.21 211.812 1499.41 208.036 1497.81 204.823C1496.21 201.609 1493.49 198.958 1489.65 196.87C1485.8 194.781 1480.68 193.094 1474.28 191.809L1459.38 189.158C1448.5 187.069 1439.37 184.017 1432 180C1424.8 175.983 1419.36 170.762 1415.67 164.335C1411.99 157.748 1410.15 150.036 1410.15 141.199C1410.15 131.238 1412.55 122.643 1417.35 115.413C1422.16 108.183 1428.96 102.64 1437.77 98.7839C1446.74 94.928 1457.14 93 1468.99 93C1481.64 93 1492.61 95.2493 1501.9 99.7479C1511.18 104.086 1519.03 110.432 1525.43 118.787L1506.46 135.657C1502.14 130.033 1496.85 125.535 1490.61 122.161C1484.36 118.787 1476.6 117.1 1467.31 117.1C1457.7 117.1 1450.26 119.028 1444.97 122.884C1439.85 126.74 1437.29 132.363 1437.29 139.753C1437.29 144.413 1438.25 148.269 1440.17 151.321C1442.09 154.374 1444.97 156.864 1448.82 158.792C1452.82 160.72 1457.78 162.247 1463.71 163.371L1478.6 166.504C1489.81 168.593 1499.01 171.726 1506.22 175.903C1513.42 180.08 1518.71 185.382 1522.07 191.809C1525.59 198.075 1527.35 205.706 1527.35 214.704C1527.35 225.147 1524.95 234.305 1520.15 242.177C1515.35 249.889 1508.38 255.994 1499.25 260.493C1490.13 264.831 1479.16 267 1466.35 267Z" fill="currentColor" />
+            <path d="M1161.17 264.107V95.8906H1220.49C1234.75 95.8906 1247.15 99.0236 1257.72 105.29C1268.45 111.395 1276.7 120.713 1282.46 133.245C1288.38 145.616 1291.35 161.201 1291.35 179.999C1291.35 198.796 1288.38 214.461 1282.46 226.993C1276.7 239.364 1268.45 248.683 1257.72 254.949C1247.15 261.054 1234.75 264.107 1220.49 264.107H1161.17ZM1188.31 240.007H1220.49C1228.82 240.007 1236.11 238.24 1242.35 234.705C1248.76 231.17 1253.64 225.949 1257 219.04C1260.52 212.132 1262.29 203.616 1262.29 193.494V166.503C1262.29 156.381 1260.52 147.866 1257 140.957C1253.64 134.049 1248.76 128.827 1242.35 125.292C1236.11 121.758 1228.82 119.99 1220.49 119.99H1188.31V240.007Z" fill="currentColor" />
+            <path d="M998.363 264.107L943.603 171.323L925.109 135.414H924.388V172.046V264.107H898.449V95.8906H928.952L983.472 188.675L1001.97 224.583H1002.69V187.952V95.8906H1028.63V264.107H998.363Z" fill="currentColor" />
+            <path d="M781.204 264.107H752.863L738.212 218.558H675.526L660.635 264.107H633.255L690.417 95.8906H724.282L781.204 264.107ZM738.212 218.558L714.915 145.295L707.23 120.954H706.029L698.343 145.295L675.526 218.558H738.212Z" fill="currentColor" />
+            <path d="M525.35 264.107H430V95.8906H457.14V240.007H525.35V264.107Z" fill="currentColor" />
+            <path d="M696.858 208.238C702.883 202.133 712.728 202.117 718.756 208.22C723.141 212.66 724.429 219.313 722.019 225.077L714.387 243.336C711.927 249.221 703.614 249.216 701.161 243.328L693.575 225.118C691.171 219.347 692.471 212.682 696.858 208.238Z" fill="currentColor" />
+            <path d="M141.133 0.564141L271.548 78.7087C272.758 79.4302 273.5 80.7354 273.5 82.1445L273.75 124.786C273.75 127.9 270.099 129.82 267.433 128.211L165.066 66.0337C162.4 64.4248 159 66.3445 159 69.4583V118.14C159 119.527 159.719 120.816 160.9 121.544L271.625 189.216C272.792 189.936 273.509 191.203 273.525 192.574L273.472 273.036C273.489 274.48 272.727 275.82 271.479 276.544L211.56 312.276C210.29 313.012 208.72 312.994 207.468 312.228L88.7185 239.641C86.1349 238.062 86.1749 234.296 88.7914 232.772L125.938 211.135C127.208 210.396 128.782 210.412 130.036 211.178L213.512 262.158C214.741 262.909 216.277 262.941 217.536 262.243L227.439 256.754C228.711 256.049 229.5 254.709 229.5 253.255V219.054C229.5 217.663 228.777 216.372 227.591 215.645L117.405 148.042C116.221 147.315 115.499 146.026 115.497 144.636L115.368 15.2031C115.366 13.7625 116.14 12.4325 117.392 11.721L137.109 0.521883C138.361 -0.18878 139.897 -0.172639 141.133 0.564141Z" fill="currentColor" />
+            <path d="M3.4566 75.3429L39.9922 53.8981C42.655 52.3352 46.0094 54.2504 46.0169 57.3381L46.4946 253.638C46.4979 255.026 47.2207 256.314 48.4042 257.039L167.998 330.344C170.589 331.932 170.532 335.716 167.895 337.226L130.375 358.707C129.118 359.426 127.571 359.41 126.329 358.666L1.94209 284.037C0.737228 283.314 0 282.012 0 280.607V81.3798C0 78.8969 1.31528 76.5998 3.4566 75.3429Z" fill="currentColor" />
+          </symbol>
+        </defs>
+      </svg>
+
+      <SiteHeader theme={theme} accent={accent} />
+
+      <div style={{
+        display: "grid",
+        gridTemplateColumns: "minmax(220px, 280px) 1fr",
+        gap: 56,
+        maxWidth: 1320,
+        margin: "0 auto",
+        padding: "0 48px",
+      }}>
+        <TOC
+          sections={sections}
+          t={theme}
+          accent={accent}
+          activeId={activeId}
+          density={density}
+          lastUpdated={window.PRIVACY_LAST_UPDATED}
+        />
+
+        <main style={{
+          paddingTop: 56,
+          paddingBottom: 96,
+          minWidth: 0,
+        }}>
+          <header style={{ marginBottom: 16 }}>
+            <h1 style={{
+              fontSize: "clamp(44px, 6.5vw, 80px)",
+              lineHeight: 0.98,
+              letterSpacing: "-0.035em",
+              margin: 0,
+              color: theme.ink,
+              fontWeight: 600,
+              maxWidth: "16ch",
+            }}>
+              Privacy Policy.
+            </h1>
+
+            <p style={{
+              marginTop: 28,
+              fontSize: 18,
+              lineHeight: 1.55,
+              color: theme.inkSoft,
+              maxWidth: "58ch",
+            }}>
+              How Landset collects, uses, and protects your information — written in plain English with full legal details. Your privacy matters to us.
+            </p>
+
+            <div style={{
+              marginTop: 36,
+              display: "flex",
+              gap: 20,
+              flexWrap: "wrap",
+              fontFamily: "var(--mono)",
+              fontSize: 11,
+              letterSpacing: ".14em",
+              textTransform: "uppercase",
+              color: theme.inkFaint,
+            }}>
+              <span>Last updated · {window.PRIVACY_LAST_UPDATED}</span>
+              <span style={{ color: theme.rule }}>·</span>
+              <span>{sections.length} sections</span>
+            </div>
+          </header>
+
+          {sections.map((s) => (
+            <Section
+              key={s.id}
+              section={s}
+              t={theme}
+              density={density}
+              prominence={prominence}
+              showLegal={showLegal}
+              accent={accent}
+              isOpen={!!openMap[s.id]}
+              onToggle={() => toggle(s.id)}
+              registerRef={registerRef}
+            />
+          ))}
+        </main>
+      </div>
+
+      <SiteFooter theme={theme} accent={accent} />
+
+      <TweaksPanelComponent t={t} setTweak={setTweak} theme={theme} />
+    </div>
+  );
+}
+
+function TweaksPanelComponent({ t, setTweak, theme }) {
+  return (
+    <TweaksPanel title="Tweaks">
+      <TweakSection label="Appearance">
+        <TweakRadio
+          label="Theme"
+          value={t.theme}
+          options={[
+            { value: "light", label: "Light" },
+            { value: "sepia", label: "Sepia" },
+            { value: "dark", label: "Dark" },
+          ]}
+          onChange={(v) => setTweak("theme", v)}
+        />
+        <TweakColor
+          label="Accent"
+          value={t.accent}
+          options={["#5A7F5D", "#3E5C40", "#7A6A3D", "#2B4F6F", "#171614"]}
+          onChange={(v) => setTweak("accent", v)}
+        />
+        <TweakRadio
+          label="Density"
+          value={t.density}
+          options={[
+            { value: "compact", label: "Compact" },
+            { value: "comfortable", label: "Comfort" },
+            { value: "airy", label: "Airy" },
+          ]}
+          onChange={(v) => setTweak("density", v)}
+        />
+      </TweakSection>
+
+      <TweakSection label="Content">
+        <TweakToggle
+          label="Show full legal text"
+          value={t.showLegalBody}
+          onChange={(v) => setTweak("showLegalBody", v)}
+        />
+      </TweakSection>
+    </TweaksPanel>
+  );
+}
+
+// Mount
+window.PRIVACY_LAST_UPDATED = PRIVACY_LAST_UPDATED;
+ReactDOM.render(<App />, document.getElementById("root"));
+</script>
+</body>
+</html>
