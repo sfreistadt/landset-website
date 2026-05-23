@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Sitemap: https://landset.co/sitemap.xml
+
+# Block any admin or form processing pages
+Disallow: /admin/
+Disallow: /api/
