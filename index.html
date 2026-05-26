@@ -2173,6 +2173,60 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 
+  <!-- Tally Form Modal -->
+  <div id="tally-modal" class="modal-overlay">
+    <div class="modal" style="max-width: 600px;">
+      <button id="tally-modal-close" class="modal-close">&times;</button>
+      <h2 class="modal-title">Get Early Access</h2>
+      <p class="modal-subtitle">Join the waitlist for property intelligence that gives you an edge.</p>
+      <div style="margin-top: 24px;">
+        <iframe
+          data-tally-src="https://tally.so/embed/RGbKZ9?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+          loading="lazy"
+          width="100%"
+          height="450"
+          frameborder="0"
+          marginheight="0"
+          marginwidth="0"
+          title="Get Early Access">
+        </iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- Load config first so feature flags are available -->
+  <script src="app/config.js"></script>
+
+  <!-- Tally Modal Script -->
+  <script>
+    // Setup Tally modal close handlers
+    document.addEventListener('DOMContentLoaded', function() {
+      const tallyModal = document.getElementById('tally-modal');
+      const tallyClose = document.getElementById('tally-modal-close');
+      const tallyOverlay = tallyModal?.querySelector('.modal-overlay');
+
+      if (tallyClose) {
+        tallyClose.addEventListener('click', closeTallyModal);
+      }
+
+      // Close on overlay click
+      if (tallyModal) {
+        tallyModal.addEventListener('click', function(e) {
+          if (e.target === tallyModal) {
+            closeTallyModal();
+          }
+        });
+      }
+
+      // Close on ESC key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && tallyModal?.classList.contains('active')) {
+          closeTallyModal();
+        }
+      });
+    });
+  </script>
+
   <!-- Login/Auth UI Script -->
   <script>
     (function() {
@@ -2198,6 +2252,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       // Check if user is already logged in (from localStorage)
       function checkAuth() {
+        // Only check auth if feature is enabled
+        const authEnabled = window.LandsetConfig?.isFeatureEnabled('AUTH_ENABLED');
+
+        if (!authEnabled) {
+          // Auth disabled - hide all auth UI
+          loginBtn.style.display = 'none';
+          userDropdown.style.display = 'none';
+          return;
+        }
+
         const savedUser = localStorage.getItem('landset_user');
         if (savedUser) {
           try {
@@ -2418,5 +2482,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <script src="app/api.js"></script>
   <script src="app/auth.js"></script>
   <script src="app/utils.js"></script>
+
+  <!-- Tally Forms Embed -->
+  <script>
+    var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}
+  </script>
 
 </body></html>
