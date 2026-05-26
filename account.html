@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Account Settings — Landset</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Manage your Landset account settings">
+  <meta name="theme-color" content="#5A7F5D">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --paper: #F5ECE3;
+      --ink: #2B2B2B;
+      --mute: #6B6B6B;
+      --sage: #5A7F5D;
+      --sage-dark: #4A6A4D;
+      --rule: rgba(43, 43, 43, 0.12);
+      --sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --mono: 'IBM Plex Mono', 'Courier New', monospace;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--sans);
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* Navigation */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(245, 236, 227, 0.85);
+      backdrop-filter: saturate(140%) blur(8px);
+      -webkit-backdrop-filter: saturate(140%) blur(8px);
+      border-bottom: 1px solid var(--rule);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 18px 32px;
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: var(--ink);
+      font-weight: 600;
+      font-size: 18px;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mute);
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--mute);
+      transition: color .2s;
+    }
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--ink);
+    }
+
+    /* Main Content */
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 60px 32px;
+    }
+
+    .page-header {
+      margin-bottom: 48px;
+    }
+
+    .page-title {
+      font-size: 42px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: var(--ink);
+    }
+
+    .page-subtitle {
+      font-size: 18px;
+      color: var(--mute);
+      line-height: 1.7;
+    }
+
+    /* Form Sections */
+    .form-section {
+      background: white;
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      padding: 32px;
+      margin-bottom: 24px;
+    }
+
+    .section-title {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-label {
+      display: block;
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .form-label .required {
+      color: #c44;
+    }
+
+    .form-input,
+    .form-select {
+      width: 100%;
+      padding: 12px 16px;
+      font-family: var(--sans);
+      font-size: 14px;
+      border: 1px solid var(--rule);
+      border-radius: 2px;
+      background: var(--paper);
+      color: var(--ink);
+      transition: border-color .2s;
+    }
+
+    .form-input:focus,
+    .form-select:focus {
+      outline: none;
+      border-color: var(--sage);
+    }
+
+    .form-hint {
+      font-size: 12px;
+      color: var(--mute);
+      margin-top: 6px;
+      font-style: italic;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 14px 24px;
+      border-radius: 2px;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all .18s ease;
+      white-space: nowrap;
+    }
+
+    .btn-sage {
+      background: var(--sage);
+      color: #F5ECE3;
+      border-color: var(--sage);
+    }
+
+    .btn-sage:hover {
+      background: var(--sage-dark);
+      border-color: var(--sage-dark);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--ink);
+      border-color: var(--ink);
+    }
+
+    .btn-ghost:hover {
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .btn-danger {
+      background: transparent;
+      color: #c44;
+      border-color: #c44;
+    }
+
+    .btn-danger:hover {
+      background: #c44;
+      color: white;
+    }
+
+    .form-actions {
+      display: flex;
+      gap: 16px;
+      margin-top: 32px;
+      padding-top: 32px;
+      border-top: 1px solid var(--rule);
+    }
+
+    .form-actions.space-between {
+      justify-content: space-between;
+    }
+
+    .success-message {
+      background: #e8f5e9;
+      border: 1px solid #4caf50;
+      border-radius: 4px;
+      padding: 16px;
+      margin-bottom: 24px;
+      color: #2e7d32;
+      display: none;
+    }
+
+    .error-message {
+      background: #ffebee;
+      border: 1px solid #f44336;
+      border-radius: 4px;
+      padding: 16px;
+      margin-bottom: 24px;
+      color: #c62828;
+      display: none;
+    }
+
+    .info-box {
+      background: rgba(90, 127, 93, 0.08);
+      border: 1px solid var(--sage);
+      border-radius: 4px;
+      padding: 16px;
+      margin-bottom: 24px;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .account-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .stat-card {
+      background: white;
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: 32px;
+      font-weight: 600;
+      color: var(--sage);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mute);
+    }
+
+    @media (max-width: 720px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+      .container {
+        padding: 40px 20px;
+      }
+      .page-title {
+        font-size: 32px;
+      }
+      .form-section {
+        padding: 24px 20px;
+      }
+      .account-stats {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="nav-logo" href="index.html">Landset</a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="account.html" class="active">Account</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="page-header">
+      <h1 class="page-title">Account Settings</h1>
+      <p class="page-subtitle">Manage your profile information and preferences</p>
+    </div>
+
+    <div id="success-message" class="success-message">
+      Your account settings have been updated successfully!
+    </div>
+
+    <div id="error-message" class="error-message"></div>
+
+    <!-- Account Stats -->
+    <div class="account-stats">
+      <div class="stat-card">
+        <span id="reports-count" class="stat-value">0</span>
+        <span class="stat-label">Reports Requested</span>
+      </div>
+      <div class="stat-card">
+        <span id="member-since" class="stat-value">—</span>
+        <span class="stat-label">Member Since</span>
+      </div>
+      <div class="stat-card">
+        <span id="last-login" class="stat-value">—</span>
+        <span class="stat-label">Last Login</span>
+      </div>
+    </div>
+
+    <form id="account-form">
+      <!-- Personal Information -->
+      <div class="form-section">
+        <h2 class="section-title">Personal Information</h2>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="full-name">
+              Full Name <span class="required">*</span>
+            </label>
+            <input type="text" id="full-name" class="form-input" required placeholder="Jane Smith">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="initials">
+              Initials
+            </label>
+            <input type="text" id="initials" class="form-input" placeholder="JS" maxlength="3">
+            <p class="form-hint">For report headers</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="email">
+            Email Address <span class="required">*</span>
+          </label>
+          <input type="email" id="email" class="form-input" required placeholder="jane@example.com">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="phone">
+            Phone Number
+          </label>
+          <input type="tel" id="phone" class="form-input" placeholder="(512) 555-0147">
+        </div>
+      </div>
+
+      <!-- Professional Information -->
+      <div class="form-section">
+        <h2 class="section-title">Professional Information</h2>
+
+        <div class="form-group">
+          <label class="form-label" for="agency">
+            Agency / Brokerage
+          </label>
+          <input type="text" id="agency" class="form-input" placeholder="Compass Real Estate">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="license">
+              License Number
+            </label>
+            <input type="text" id="license" class="form-input" placeholder="TX-123456">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="title">
+              Title / Role
+            </label>
+            <input type="text" id="title" class="form-input" placeholder="Real Estate Agent">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="website">
+            Website
+          </label>
+          <input type="url" id="website" class="form-input" placeholder="https://yourwebsite.com">
+        </div>
+      </div>
+
+      <!-- Preferences -->
+      <div class="form-section">
+        <h2 class="section-title">Report Preferences</h2>
+
+        <div class="form-group">
+          <label class="form-label" for="default-radius">
+            Default Neighborhood Radius
+          </label>
+          <select id="default-radius" class="form-select">
+            <option value="0.25">0.25 mile</option>
+            <option value="0.5" selected>0.5 mile</option>
+            <option value="0.75">0.75 mile</option>
+            <option value="1.0">1.0 mile</option>
+          </select>
+          <p class="form-hint">Default radius for neighborhood analysis in reports</p>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="report-format">
+            Preferred Report Format
+          </label>
+          <select id="report-format" class="form-select">
+            <option value="pdf" selected>PDF</option>
+            <option value="html">HTML</option>
+            <option value="both">Both PDF and HTML</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Security -->
+      <div class="form-section">
+        <h2 class="section-title">Security</h2>
+
+        <div class="info-box">
+          To change your password, please contact support or use the password reset option on the login page.
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="current-password">
+            Current Password
+          </label>
+          <input type="password" id="current-password" class="form-input" placeholder="Enter current password to save changes">
+          <p class="form-hint">Required when updating account information</p>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="form-actions space-between">
+        <button type="button" class="btn btn-danger" id="delete-account-btn">Delete Account</button>
+        <div style="display: flex; gap: 16px;">
+          <button type="button" class="btn btn-ghost" onclick="window.location.href='dashboard.html'">Cancel</button>
+          <button type="submit" class="btn btn-sage">Save Changes</button>
+        </div>
+      </div>
+    </form>
+  </main>
+
+  <script>
+    // Check if user is logged in
+    window.addEventListener('DOMContentLoaded', function() {
+      const savedUser = localStorage.getItem('landset_user');
+
+      if (!savedUser) {
+        // Redirect to home if not logged in
+        alert('Please log in to access account settings');
+        window.location.href = 'index.html';
+        return;
+      }
+
+      try {
+        const user = JSON.parse(savedUser);
+
+        // Populate form with user data
+        if (user.name) document.getElementById('full-name').value = user.name;
+        if (user.initials) document.getElementById('initials').value = user.initials;
+        if (user.email) document.getElementById('email').value = user.email;
+        if (user.phone) document.getElementById('phone').value = user.phone;
+        if (user.agency) document.getElementById('agency').value = user.agency;
+        if (user.license) document.getElementById('license').value = user.license;
+        if (user.title) document.getElementById('title').value = user.title;
+        if (user.website) document.getElementById('website').value = user.website;
+        if (user.defaultRadius) document.getElementById('default-radius').value = user.defaultRadius;
+        if (user.reportFormat) document.getElementById('report-format').value = user.reportFormat;
+
+        // Update stats
+        const reportRequests = JSON.parse(localStorage.getItem('landset_reports') || '[]');
+        document.getElementById('reports-count').textContent = reportRequests.length;
+
+        if (user.createdAt) {
+          const memberSince = new Date(user.createdAt);
+          const monthYear = memberSince.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+          document.getElementById('member-since').textContent = monthYear;
+        }
+
+        if (user.lastLogin) {
+          const lastLogin = new Date(user.lastLogin);
+          const today = new Date();
+          const diffDays = Math.floor((today - lastLogin) / (1000 * 60 * 60 * 24));
+
+          if (diffDays === 0) {
+            document.getElementById('last-login').textContent = 'Today';
+          } else if (diffDays === 1) {
+            document.getElementById('last-login').textContent = 'Yesterday';
+          } else {
+            document.getElementById('last-login').textContent = diffDays + 'd ago';
+          }
+        } else {
+          document.getElementById('last-login').textContent = 'Today';
+        }
+
+      } catch (e) {
+        console.error('Error loading user data:', e);
+        localStorage.removeItem('landset_user');
+        window.location.href = 'index.html';
+      }
+    });
+
+    // Handle form submission
+    document.getElementById('account-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const savedUser = localStorage.getItem('landset_user');
+      if (!savedUser) {
+        showError('Session expired. Please log in again.');
+        return;
+      }
+
+      try {
+        const user = JSON.parse(savedUser);
+
+        // Update user object with new values
+        const updatedUser = {
+          ...user,
+          name: document.getElementById('full-name').value,
+          initials: document.getElementById('initials').value,
+          email: document.getElementById('email').value,
+          phone: document.getElementById('phone').value,
+          agency: document.getElementById('agency').value,
+          license: document.getElementById('license').value,
+          title: document.getElementById('title').value,
+          website: document.getElementById('website').value,
+          defaultRadius: document.getElementById('default-radius').value,
+          reportFormat: document.getElementById('report-format').value,
+          updatedAt: new Date().toISOString(),
+          lastLogin: new Date().toISOString()
+        };
+
+        // Save to localStorage (replace with API call)
+        localStorage.setItem('landset_user', JSON.stringify(updatedUser));
+
+        // Show success message
+        document.getElementById('success-message').style.display = 'block';
+        document.getElementById('error-message').style.display = 'none';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        // Clear password field
+        document.getElementById('current-password').value = '';
+
+        // Hide success message after 3 seconds
+        setTimeout(() => {
+          document.getElementById('success-message').style.display = 'none';
+        }, 3000);
+
+      } catch (e) {
+        showError('Error updating account. Please try again.');
+      }
+    });
+
+    // Delete account
+    document.getElementById('delete-account-btn').addEventListener('click', function() {
+      if (confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
+        if (confirm('This will permanently delete all your data. Are you absolutely sure?')) {
+          localStorage.removeItem('landset_user');
+          localStorage.removeItem('landset_reports');
+          alert('Your account has been deleted.');
+          window.location.href = 'index.html';
+        }
+      }
+    });
+
+    function showError(message) {
+      const errorEl = document.getElementById('error-message');
+      errorEl.textContent = message;
+      errorEl.style.display = 'block';
+      document.getElementById('success-message').style.display = 'none';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
