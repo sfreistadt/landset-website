@@ -1710,7 +1710,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <span class="dropdown-arrow">▼</span>
           </button>
           <div class="user-dropdown-menu">
-            <a href="#" id="settings-link">Settings</a>
+            <a href="request-report.html">Request Report</a>
+            <a href="account.html">Settings</a>
             <a href="#" id="logout-link">Logout</a>
           </div>
         </div>
@@ -2192,7 +2193,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       const showSignupBtn = document.getElementById('show-signup');
       const showLoginBtn = document.getElementById('show-login');
-      const settingsLink = document.getElementById('settings-link');
       const logoutLink = document.getElementById('logout-link');
       const settingsCancel = document.getElementById('settings-cancel');
 
@@ -2293,12 +2293,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       if (dropdownToggle) {
         dropdownToggle.addEventListener('click', toggleDropdown);
       }
-
-      settingsLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        userDropdown.classList.remove('active');
-        showModal('settings');
-      });
 
       logoutLink.addEventListener('click', (e) => {
         e.preventDefault();
