@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Request Report — Landset</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Request a property report from Landset">
+  <meta name="theme-color" content="#5A7F5D">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+  <!-- Landset App Styles -->
+  <link rel="stylesheet" href="app/app.css">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: #f8f9fa;
+      color: #1a1a1a;
+      line-height: 1.6;
+    }
+
+    header {
+      background: white;
+      border-bottom: 1px solid #e0e0e0;
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      height: 32px;
+    }
+
+    .header-user {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    main {
+      min-height: calc(100vh - 200px);
+      padding: 3rem 2rem;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .page-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .page-header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      color: #1a1a1a;
+    }
+
+    .page-header p {
+      font-size: 1.1rem;
+      color: #666;
+    }
+
+    footer {
+      background: white;
+      border-top: 1px solid #e0e0e0;
+      padding: 2rem;
+      text-align: center;
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    /* Override report form styles for this page */
+    .report-form-container {
+      display: block !important;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <a href="/">
+        <img class="logo" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTk5NyIgaGVpZ2h0PSIzNjAiIHZpZXdCb3g9IjAgMCAxOTk3IDM2MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTE5OTcgMTE5Ljk5SDE5NDcuMDRWMjY0LjEwN0gxOTE5LjlWMTE5Ljk5SDE4NjkuOTVWOTUuODkwNkgxOTk3VjExOS45OVoiIGZpbGw9ImJsYWNrIj48L3BhdGg+CjxwYXRoIGQ9Ik0xNzU4LjU2IDI2NC4xMDdIMTY1MS4yVjk1Ljg5MDZIMTc1OC41NlYxMTkuOTlIMTY3OC4zNFYxNjYuOTg1SDE3NTEuMTFWMTkxLjA4NUgxNjc4LjM0VjI0MC4wMDdIMTc1OC41NlYyNjQuMTA3WiIgZmlsbD0iYmxhY2siPjwvcGF0aD4KPHBhdGggZD0iTTE0NjYuMzUgMjY3QzE0NTIuNDIgMjY3IDE0NDAuNDkgMjY0LjQyOSAxNDMwLjU2IDI1OS4yODhDMTQyMC42NCAyNTMuOTg2IDE0MTIuMTUgMjQ3LjA3OCAxNDA1LjEgMjM4LjU2MkwxNDI0LjA4IDIyMC45N0MxNDI5Ljg0IDIyOC4xOTkgMTQzNi4yNSAyMzMuNjYyIDE0NDMuMjkgMjM3LjM1N0MxNDUwLjUgMjQxLjA1MyAxNDU4LjY2IDI0Mi45IDE0NjcuNzkgMjQyLjlDMTQ3OC41MiAyNDIuOSAxNDg2LjYgMjQwLjQ5IDE0OTIuMDUgMjM1LjY3QzE0OTcuNDkgMjMwLjY5IDE1MDAuMjEgMjI0LjE4MyAxNTAwLjIxIDIxNi4xNUMxNTAwLjIxIDIxMS44MTIgMTQ5OS40MSAyMDguMDM2IDE0OTcuODEgMjA0LjgyM0MxNDk2LjIxIDIwMS42MDkgMTQ5My40OSAxOTguOTU4IDE0ODkuNjUgMTk2Ljg3QzE0ODUuOCAxOTQuNzgxIDE0ODAuNjggMTkzLjA5NCAxNDc0LjI4IDE5MS44MDlMMTQ1OS4zOCAxODkuMTU4QzE0NDguNSAxODcuMDY5IDE0MzkuMzcgMTg0LjAxNyAxNDMyIDE4MEMxNDI0LjggMTc1Ljk4MyAxNDE5LjM2IDE3MC43NjIgMTQxNS42NyAxNjQuMzM1QzE0MTEuOTkgMTU3Ljc0OCAxNDEwLjE1IDE1MC4wMzYgMTQxMC4xNSAxNDEuMTk5QzE0MTAuMTUgMTMxLjIzOCAxNDEyLjU1IDEyMi42NDMgMTQxNy4zNSAxMTUuNDEzQzE0MjIuMTYgMTA4LjE4MyAxNDI4Ljk2IDEwMi42NCAxNDM3Ljc3IDk4Ljc4MzlDMTQ0Ni43NCA5NC45MjggMTQ1Ny4xNCA5MyAxNDY4Ljk5IDkzQzE0ODEuNjQgOTMgMTQ5Mi42MSA5NS4yNDkzIDE1MDEuOSA5OS43NDc5QzE1MTEuMTggMTA0LjA4NiAxNTE5LjAzIDExMC40MzIgMTUyNS40MyAxMTguNzg3TDE1MDYuNDYgMTM1LjY1N0MxNTAyLjE0IDEzMC4wMzMgMTQ5Ni44NSAxMjUuNTM1IDE0OTAuNjEgMTIyLjE2MUMxNDg0LjM2IDExOC43ODcgMTQ3Ni42IDExNy4xIDE0NjcuMzEgMTE3LjFDMTQ1Ny43IDExNy4xIDE0NTAuMjYgMTE5LjAyOCAxNDQ0Ljk3IDEyMi44ODRDMTQzOS44NSAxMjYuNzQgMTQzNy4yOSAxMzIuMzYzIDE0MzcuMjkgMTM5Ljc1M0MxNDM3LjI5IDE0NC40MTMgMTQzOC4yNSAxNDguMjY5IDE0NDAuMTcgMTUxLjMyMUMxNDQyLjA5IDE1NC4zNzQgMTQ0NC45NyAxNTYuODY0IDE0NDguODIgMTU4Ljc5MkMxNDUyLjgyIDE2MC43MiAxNDU3Ljc4IDE2Mi4yNDcgMTQ2My43MSAxNjMuMzcxTDE0NzguNiAxNjYuNTA0QzE0ODkuODEgMTY4LjU5MyAxNDk5LjAxIDE3MS43MjYgMTUwNi4yMiAxNzUuOTAzQzE1MTMuNDIgMTgwLjA4IDE1MTguNzEgMTg1LjM4MiAxNTIyLjA3IDE5MS44MDlDMTUyNS41OSAxOTguMDc1IDE1MjcuMzUgMjA1LjcwNiAxNTI3LjM1IDIxNC43MDRDMTUyNy4zNSAyMjUuMTQ3IDE1MjQuOTUgMjM0LjMwNSAxNTIwLjE1IDI0Mi4xNzdDMTUxNS4zNSAyNDkuODg5IDE1MDguMzggMjU1Ljk5NCAxNDk5LjI1IDI2MC40OTNDMTQ5MC4xMyAyNjQuODMxIDE0NzkuMTYgMjY3IDE0NjYuMzUgMjY3WiIgZmlsbD0iYmxhY2siPjwvcGF0aD4KPHBhdGggZD0iTTExNjEuMTcgMjY0LjEwN1Y5NS44OTA2SDEyMjAuNDlDMTIzNC43NSA5NS44OTA2IDEyNDcuMTUgOTkuMDIzNiAxMjU3LjcyIDEwNS4yOUMxMjY4LjQ1IDExMS4zOTUgMTI3Ni43IDEyMC43MTMgMTI4Mi40NiAxMzMuMjQ1QzEyODguMzggMTQ1LjYxNiAxMjkxLjM1IDE2MS4yMDEgMTI5MS4zNSAxNzkuOTk5QzEyOTEuMzUgMTk4Ljc5NiAxMjg4LjM4IDIxNC40NjEgMTI4Mi40NiAyMjYuOTkzQzEyNzYuNyAyMzkuMzY0IDEyNjguNDUgMjQ4LjY4MyAxMjU3LjcyIDI1NC45NDlDMTI0Ny4xNSAyNjEuMDU0IDEyMzQuNzUgMjY0LjEwNyAxMjIwLjQ5IDI2NC4xMDdIMTE2MS4xN1pNMTE4OC4zMSAyNDAuMDA3SDEyMjAuNDlDMTIyOC44MiAyNDAuMDA3IDEyMzYuMTEgMjM4LjI0IDEyNDIuMzUgMjM0LjcwNUMxMjQ4Ljc2IDIzMS4xNyAxMjUzLjY0IDIyNS45NDkgMTI1NyAyMTkuMDRDMTI2MC41MiAyMTIuMTMyIDEyNjIuMjkgMjAzLjYxNiAxMjYyLjI5IDE5My40OTRWMTY2LjUwM0MxMjYyLjI5IDE1Ni4zODEgMTI2MC41MiAxNDcuODY2IDEyNTcgMTQwLjk1N0MxMjUzLjY0IDEzNC4wNDkgMTI0OC43NiAxMjguODI3IDEyNDIuMzUgMTI1LjI5MkMxMjM2LjExIDEyMS43NTggMTIyOC44MiAxMTkuOTkgMTIyMC40OSAxMTkuOTlIMTE4OC4zMVYyNDAuMDA3WiIgZmlsbD0iYmxhY2siPjwvcGF0aD4KPHBhdGggZD0iTTk5OC4zNjMgMjY0LjEwN0w5NDMuNjAzIDE3MS4zMjNMOTI1LjEwOSAxMzUuNDE0SDkyNC4zODhWMTcyLjA0NlYyNjQuMTA3SDg5OC40NDlWOTUuODkwNkg5MjguOTUyTDk4My40NzIgMTg4LjY3NUwxMDAxLjk3IDIyNC41ODNIMTAwMi42OVYxODcuOTUyVjk1Ljg5MDZIMTAyOC42M1YyNjQuMTA3SDk5OC4zNjNaIiBmaWxsPSJibGFjayI+PC9wYXRoPgo8cGF0aCBkPSJNNzgxLjIwNCAyNjQuMTA3SDc1Mi44NjNMNzM4LjIxMiAyMTguNTU4SDY3NS41MjZMNjYwLjYzNSAyNjQuMTA3SDYzMy4yNTVMNjkwLjQxNyA5NS44OTA2SDcyNC4yODJMNzgxLjIwNCAyNjQuMTA3Wk03MzguMjEyIDIxOC41NThMNzE0LjkxNSAxNDUuMjk1TDcwNy4yMyAxMjAuOTU0SDcwNi4wMjlMNjk4LjM0MyAxNDUuMjk1TDY3NS41MjYgMjE4LjU1OEg3MzguMjEyWiIgZmlsbD0iYmxhY2siPjwvcGF0aD4KPHBhdGggZD0iTTUyNS4zNSAyNjQuMTA3SDQzMFY5NS44OTA2SDQ1Ny4xNFYyNDAuMDA3SDUyNS4zNVYyNjQuMTA3WiIgZmlsbD0iYmxhY2siPjwvcGF0aD4KPHBhdGggZD0iTTY5Ni44NTggMjA4LjIzOEM3MDIuODgzIDIwMi4xMzMgNzEyLjcyOCAyMDIuMTE3IDcxOC43NTYgMjA4LjIyQzcyMy4xNDEgMjEyLjY2IDcyNC40MjkgMjE5LjMxMyA3MjIuMDE5IDIyNS4wNzdMNzE0LjM4NyAyNDMuMzM2QzcxMS45MjcgMjQ5LjIyMSA3MDMuNjE0IDI0OS4yMTYgNzAxLjE2MSAyNDMuMzI4TDY5My41NzUgMjI1LjExOEM2OTEuMTcxIDIxOS4zNDcgNjkyLjQ3MSAyMTIuNjgyIDY5Ni44NTggMjA4LjIzOFoiIGZpbGw9ImJsYWNrIj48L3BhdGg+CjxwYXRoIGQ9Ik0xNDEuMTMzIDAuNTY0MTQxTDI3MS41NDggNzguNzA4N0MyNzIuNzU4IDc5LjQzMDIgMjczLjUgODAuNzM1NCAyNzMuNSA4Mi4xNDQ1TDI3My43NSAxMjQuNzg2QzI3My43NSAxMjcuOSAyNzAuMDk5IDEyOS44MiAyNjcuNDMzIDEyOC4yMTFMMTY1LjA2NiA2Ni4wMzM3QzE2Mi40IDY0LjQyNDggMTU5IDY2LjM0NDUgMTU5IDY5LjQ1ODNWMTE4LjE0QzE1OSAxMTkuNTI3IDE1OS43MTkgMTIwLjgxNiAxNjAuOSAxMjEuNTQ0TDI3MS42MjUgMTg5LjIxNkMyNzIuNzkyIDE4OS45MzYgMjczLjUwOSAxOTEuMjAzIDI3My41MjUgMTkyLjU3NEwyNzMuNDcyIDI3My4wMzZDMjczLjQ4OSAyNzQuNDggMjcyLjcyNyAyNzUuODIgMjcxLjQ3OSAyNzYuNTQ0TDIxMS41NiAzMTIuMjc2QzIxMC4yOSAzMTMuMDEyIDIwOC43MiAzMTIuOTk0IDIwNy40NjggMzEyLjIyOEw4OC43MTg1IDIzOS42NDFDODYuMTM0OSAyMzguMDYyIDg2LjE3NDkgMjM0LjI5NiA4OC43OTE0IDIzMi43NzJMMTI1LjkzOCAyMTEuMTM1QzEyNy4yMDggMjEwLjM5NiAxMjguNzgyIDIxMC40MTIgMTMwLjAzNiAyMTEuMTc4TDIxMy41MTIgMjYyLjE1OEMyMTQuNzQxIDI2Mi45MDkgMjE2LjI3NyAyNjIuOTQxIDIxNy41MzYgMjYyLjI0M0wyMjcuNDM5IDI1Ni43NTRDMjI4LjcxMSAyNTYuMDQ5IDIyOS41IDI1NC43MDkgMjI5LjUgMjUzLjI1NVYyMTkuMDU0QzIyOS41IDIxNy42NjMgMjI4Ljc3NyAyMTYuMzcyIDIyNy41OTEgMjE1LjY0NUwxMTcuNDA1IDE0OC4wNDJDMTE2LjIyMSAxNDcuMzE1IDExNS40OTkgMTQ2LjAyNiAxMTUuNDk3IDE0NC42MzZMMTE1LjM2OCAxNS4yMDMxQzExNS4zNjYgMTMuNzYyNSAxMTYuMTQgMTIuNDMyNSAxMTcuMzkyIDExLjcyMUwxMzcuMTA5IDAuNTIxODgzQzEzOC4zNjEgLTAuMTg4NzggMTM5Ljg5NyAtMC4xNzI2MzkgMTQxLjEzMyAwLjU2NDE0MVoiIGZpbGw9ImJsYWNrIj48L3BhdGg+CjxwYXRoIGQ9Ik0zLjQ1NjYgNzUuMzQyOUwzOS45OTIyIDUzLjg5ODFDNDIuNjU1IDUyLjMzNTIgNDYuMDA5NCA1NC4yNTA0IDQ2LjAxNjkgNTcuMzM4MUw0Ni40OTQ2IDI1My42MzhDNDYuNDk3OSAyNTUuMDI2IDQ3LjIyMDcgMjU2LjMxNCA0OC40MDQyIDI1Ny4wMzlMMTY3Ljk5OCAzMzAuMzQ0QzE3MC41ODkgMzMxLjkzMiAxNzAuNTMyIDMzNS43MTYgMTY3Ljg5NSAzMzcuMjI2TDEzMC4zNzUgMzU4LjcwN0MxMjkuMTE4IDM1OS40MjYgMTI3LjU3MSAzNTkuNDEgMTI2LjMyOSAzNTguNjY2TDEuOTQyMDkgMjg0LjAzN0MwLjczNzIyOCAyODMuMzE0IDAgMjgyLjAxMiAwIDI4MC42MDdWODEuMzc5OEMwIDc4Ljg5NjkgMS4zMTUyOCA3Ni41OTk4IDMuNDU2NiA3NS4zNDI5WiIgZmlsbD0iYmxhY2siPjwvcGF0aD4KPC9zdmc+" alt="Landset">
+      </a>
+      <div class="header-user">
+        <span id="header-user-name"></span>
+        <button id="header-logout-btn" class="btn-link">Log out</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="page-header">
+        <h1>Request a Property Report</h1>
+        <p>Get permit history and neighborhood insights for any Austin property</p>
+      </div>
+
+      <!-- Report form will be injected here -->
+      <div id="report-form-mount"></div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Landset. Property intelligence for Austin real estate.</p>
+  </footer>
+
+  <!-- Landset App Scripts -->
+  <script src="app/config.js"></script>
+  <script src="app/api.js"></script>
+  <script src="app/utils.js"></script>
+  <script src="app/report.js"></script>
+
+  <script>
+    // Check authentication on page load
+    async function initDashboard() {
+      try {
+        const user = await api.me();
+
+        if (!user) {
+          // Not authenticated, redirect to home
+          window.location.href = '/';
+          return;
+        }
+
+        // Update header with user info
+        document.getElementById('header-user-name').textContent = user.name || user.email;
+
+        // Show the report form
+        reportGenerator.show();
+
+        // Setup logout button
+        document.getElementById('header-logout-btn').addEventListener('click', async () => {
+          try {
+            await api.logout();
+            window.location.href = '/';
+          } catch (err) {
+            console.error('Logout failed:', err);
+            window.location.href = '/';
+          }
+        });
+
+      } catch (err) {
+        console.error('Authentication check failed:', err);
+        // Redirect to home if not authenticated
+        window.location.href = '/';
+      }
+    }
+
+    // Run on page load
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initDashboard);
+    } else {
+      initDashboard();
+    }
+  </script>
+</body>
+</html>
