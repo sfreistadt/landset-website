@@ -700,6 +700,196 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .btn .arrow { transition: transform .18s; }
     .btn:hover .arrow { transform: translateX(3px); }
 
+    /* ===== User Dropdown ===== */
+    .user-dropdown {
+      position: relative;
+    }
+    .user-dropdown-toggle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .dropdown-arrow {
+      font-size: 10px;
+      transition: transform .2s;
+    }
+    .user-dropdown.active .dropdown-arrow {
+      transform: rotate(180deg);
+    }
+    .user-dropdown-menu {
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-radius: 2px;
+      padding: 8px 0;
+      min-width: 160px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-8px);
+      transition: all .2s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      z-index: 100;
+    }
+    .user-dropdown.active .user-dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    .user-dropdown-menu a {
+      display: block;
+      padding: 10px 20px;
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mute);
+      text-decoration: none;
+      transition: all .15s;
+    }
+    .user-dropdown-menu a:hover {
+      color: var(--ink);
+      background: rgba(90, 127, 93, 0.05);
+    }
+
+    /* ===== Login Modal ===== */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all .25s ease;
+      padding: 20px;
+    }
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .modal {
+      background: var(--paper);
+      border-radius: 4px;
+      padding: 40px;
+      max-width: 450px;
+      width: 100%;
+      position: relative;
+      transform: scale(0.95);
+      transition: transform .25s ease;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    }
+    .modal-overlay.active .modal {
+      transform: scale(1);
+    }
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: var(--mute);
+      cursor: pointer;
+      padding: 4px 8px;
+      line-height: 1;
+      transition: color .2s;
+    }
+    .modal-close:hover {
+      color: var(--ink);
+    }
+    .modal-title {
+      font-family: var(--sans);
+      font-size: 28px;
+      font-weight: 600;
+      color: var(--ink);
+      margin: 0 0 8px;
+    }
+    .modal-subtitle {
+      font-size: 14px;
+      color: var(--mute);
+      margin: 0 0 32px;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-label {
+      display: block;
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+    .form-input {
+      width: 100%;
+      padding: 12px 16px;
+      font-family: var(--sans);
+      font-size: 14px;
+      border: 1px solid var(--rule);
+      border-radius: 2px;
+      background: var(--paper);
+      color: var(--ink);
+      transition: border-color .2s;
+      box-sizing: border-box;
+    }
+    .form-input:focus {
+      outline: none;
+      border-color: var(--sage);
+    }
+    .form-input::placeholder {
+      color: var(--mute);
+      opacity: 0.5;
+    }
+    .form-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 32px;
+    }
+    .form-actions .btn {
+      flex: 1;
+      justify-content: center;
+    }
+    .modal-toggle {
+      text-align: center;
+      margin-top: 24px;
+      font-size: 13px;
+      color: var(--mute);
+    }
+    .modal-toggle button {
+      background: none;
+      border: none;
+      color: var(--sage);
+      cursor: pointer;
+      text-decoration: underline;
+      padding: 0;
+      font-size: inherit;
+    }
+    .modal-toggle button:hover {
+      color: var(--sage-dark);
+    }
+    .form-error {
+      color: #c44;
+      font-size: 12px;
+      margin-top: 8px;
+    }
+    @media (max-width: 720px) {
+      .modal {
+        padding: 32px 24px;
+      }
+      .modal-title {
+        font-size: 24px;
+      }
+    }
+
     /* ===== HERO ===== */
     .hero {
       padding: 48px 0 56px;
@@ -1493,6 +1683,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     gtag('config', 'G-V6GR919718');
   </script>
+
+  <!-- Landset App Styles -->
+  <link rel="stylesheet" href="app/app.css">
 </head>
 <body>
 
@@ -1506,6 +1699,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <a href="#how">How it works</a>
         <a href="about.html">About</a>
         <a href="#early-access" class="btn btn-sage">Get early access <span class="arrow">→</span></a>
+
+        <!-- Login Button (shown when not logged in) -->
+        <button id="login-btn" class="btn btn-ghost" style="display: none;">Login</button>
+
+        <!-- User Dropdown (shown when logged in) -->
+        <div id="user-dropdown" class="user-dropdown" style="display: none;">
+          <button class="user-dropdown-toggle btn btn-ghost">
+            <span id="user-name">Account</span>
+            <span class="dropdown-arrow">▼</span>
+          </button>
+          <div class="user-dropdown-menu">
+            <a href="#" id="settings-link">Settings</a>
+            <a href="#" id="logout-link">Logout</a>
+          </div>
+        </div>
       </nav>
     </div>
   </header>
@@ -1747,11 +1955,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div id="form-root">
             <button
               class="join-button"
-              data-tally-open="RGbKZ9"
-              data-tally-layout="modal"
-              data-tally-width="600"
-              data-tally-align-left="1"
-              data-tally-hide-title="1"
+              id="cta-get-access-btn"
             >
               GET EARLY ACCESS →
             </button>
@@ -1857,40 +2061,368 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         }
       });
 
-      // Track clicks on the Tally form button
+      // Track registration modal opens
       document.addEventListener('click', function(e) {
-        const tallyButton = e.target.closest('[data-tally-open]');
-        if (tallyButton) {
-          gtag('event', 'get_early_access_form_open', {
+        const accessButton = e.target.closest('a[href="#early-access"], #cta-get-access-btn');
+        if (accessButton) {
+          gtag('event', 'get_early_access_modal_open', {
             'event_category': 'engagement',
-            'event_label': 'tally_form_button',
+            'event_label': 'access_button',
             'location': 'early_access_section'
-          });
-        }
-      });
-
-      // Track Tally form submissions (completions)
-      window.addEventListener('message', function(e) {
-        // Tally sends messages when forms are submitted
-        if (e.data && e.data.event === 'Tally.FormSubmitted') {
-          gtag('event', 'get_early_access_form_completed', {
-            'event_category': 'conversion',
-            'event_label': 'early_access_signup',
-            'location': 'tally_form',
-            'form_id': e.data.formId || 'RGbKZ9'
-          });
-
-          // Also send as a conversion event for better tracking
-          gtag('event', 'conversion', {
-            'send_to': 'G-V6GR919718',
-            'event_category': 'lead_generation',
-            'event_label': 'early_access_completed'
           });
         }
       });
     })();
   </script>
 
-  <script src="https://tally.so/widgets/embed.js"></script>
+  <!-- Login Modal -->
+  <div id="login-modal" class="modal-overlay">
+    <div class="modal">
+      <button class="modal-close" id="modal-close">&times;</button>
+
+      <!-- Login Form -->
+      <form id="login-form" style="display: none;">
+        <h2 class="modal-title">Welcome back</h2>
+        <p class="modal-subtitle">Sign in to your Landset account</p>
+
+        <div class="form-group">
+          <label class="form-label" for="login-email">Email</label>
+          <input type="email" id="login-email" class="form-input" placeholder="you@example.com" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="login-password">Password</label>
+          <input type="password" id="login-password" class="form-input" placeholder="Enter your password" required>
+        </div>
+
+        <div id="login-error" class="form-error" style="display: none;"></div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-sage">Sign In</button>
+        </div>
+
+        <div class="modal-toggle">
+          Don't have an account? <button type="button" id="show-signup">Sign up</button>
+        </div>
+      </form>
+
+      <!-- Signup Form -->
+      <form id="signup-form" style="display: none;">
+        <h2 class="modal-title">Create account</h2>
+        <p class="modal-subtitle">Get started with Landset</p>
+
+        <div class="form-group">
+          <label class="form-label" for="signup-name">Full Name</label>
+          <input type="text" id="signup-name" class="form-input" placeholder="John Doe" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="signup-email">Email</label>
+          <input type="email" id="signup-email" class="form-input" placeholder="you@example.com" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="signup-password">Password</label>
+          <input type="password" id="signup-password" class="form-input" placeholder="Create a password" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="signup-phone">Phone Number</label>
+          <input type="tel" id="signup-phone" class="form-input" placeholder="(123) 456-7890">
+        </div>
+
+        <div id="signup-error" class="form-error" style="display: none;"></div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-sage">Create Account</button>
+        </div>
+
+        <div class="modal-toggle">
+          Already have an account? <button type="button" id="show-login">Sign in</button>
+        </div>
+      </form>
+
+      <!-- Settings Form -->
+      <form id="settings-form" style="display: none;">
+        <h2 class="modal-title">Account Settings</h2>
+        <p class="modal-subtitle">Update your information</p>
+
+        <div class="form-group">
+          <label class="form-label" for="settings-name">Full Name</label>
+          <input type="text" id="settings-name" class="form-input" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="settings-email">Email</label>
+          <input type="email" id="settings-email" class="form-input" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="settings-phone">Phone Number</label>
+          <input type="tel" id="settings-phone" class="form-input">
+        </div>
+
+        <div id="settings-error" class="form-error" style="display: none;"></div>
+
+        <div class="form-actions">
+          <button type="button" class="btn btn-ghost" id="settings-cancel">Cancel</button>
+          <button type="submit" class="btn btn-sage">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Login/Auth UI Script -->
+  <script>
+    (function() {
+      // State
+      let currentUser = null;
+      let currentView = 'login'; // 'login', 'signup', or 'settings'
+
+      // Elements
+      const loginBtn = document.getElementById('login-btn');
+      const userDropdown = document.getElementById('user-dropdown');
+      const userNameEl = document.getElementById('user-name');
+      const modalOverlay = document.getElementById('login-modal');
+      const modalClose = document.getElementById('modal-close');
+
+      const loginForm = document.getElementById('login-form');
+      const signupForm = document.getElementById('signup-form');
+      const settingsForm = document.getElementById('settings-form');
+
+      const showSignupBtn = document.getElementById('show-signup');
+      const showLoginBtn = document.getElementById('show-login');
+      const settingsLink = document.getElementById('settings-link');
+      const logoutLink = document.getElementById('logout-link');
+      const settingsCancel = document.getElementById('settings-cancel');
+
+      // Check if user is already logged in (from localStorage)
+      function checkAuth() {
+        const savedUser = localStorage.getItem('landset_user');
+        if (savedUser) {
+          try {
+            currentUser = JSON.parse(savedUser);
+            updateUIForLoggedIn();
+          } catch (e) {
+            localStorage.removeItem('landset_user');
+          }
+        } else {
+          updateUIForLoggedOut();
+        }
+      }
+
+      // Update UI when logged in
+      function updateUIForLoggedIn() {
+        loginBtn.style.display = 'none';
+        userDropdown.style.display = 'block';
+        if (currentUser && currentUser.name) {
+          userNameEl.textContent = currentUser.name.split(' ')[0];
+        }
+      }
+
+      // Update UI when logged out
+      function updateUIForLoggedOut() {
+        loginBtn.style.display = 'inline-flex';
+        userDropdown.style.display = 'none';
+      }
+
+      // Show modal with specific view
+      function showModal(view) {
+        currentView = view;
+        loginForm.style.display = 'none';
+        signupForm.style.display = 'none';
+        settingsForm.style.display = 'none';
+
+        if (view === 'login') {
+          loginForm.style.display = 'block';
+        } else if (view === 'signup') {
+          signupForm.style.display = 'block';
+        } else if (view === 'settings') {
+          settingsForm.style.display = 'block';
+          // Pre-fill settings form with current user data
+          if (currentUser) {
+            document.getElementById('settings-name').value = currentUser.name || '';
+            document.getElementById('settings-email').value = currentUser.email || '';
+            document.getElementById('settings-phone').value = currentUser.phone || '';
+          }
+        }
+
+        modalOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      // Hide modal
+      function hideModal() {
+        modalOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+        // Clear forms
+        loginForm.reset();
+        signupForm.reset();
+        // Clear errors
+        document.getElementById('login-error').style.display = 'none';
+        document.getElementById('signup-error').style.display = 'none';
+        document.getElementById('settings-error').style.display = 'none';
+      }
+
+      // Toggle user dropdown
+      function toggleDropdown() {
+        userDropdown.classList.toggle('active');
+      }
+
+      // Close dropdown when clicking outside
+      document.addEventListener('click', function(e) {
+        if (userDropdown && !userDropdown.contains(e.target)) {
+          userDropdown.classList.remove('active');
+        }
+      });
+
+      // Event Listeners
+      loginBtn.addEventListener('click', () => showModal('login'));
+      modalClose.addEventListener('click', hideModal);
+      modalOverlay.addEventListener('click', function(e) {
+        if (e.target === modalOverlay) {
+          hideModal();
+        }
+      });
+
+      showSignupBtn.addEventListener('click', () => showModal('signup'));
+      showLoginBtn.addEventListener('click', () => showModal('login'));
+
+      // User dropdown toggle
+      const dropdownToggle = document.querySelector('.user-dropdown-toggle');
+      if (dropdownToggle) {
+        dropdownToggle.addEventListener('click', toggleDropdown);
+      }
+
+      settingsLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        userDropdown.classList.remove('active');
+        showModal('settings');
+      });
+
+      logoutLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        currentUser = null;
+        localStorage.removeItem('landset_user');
+        updateUIForLoggedOut();
+        userDropdown.classList.remove('active');
+        // Optional: Show a confirmation message
+        alert('You have been logged out successfully');
+      });
+
+      settingsCancel.addEventListener('click', hideModal);
+
+      // Form submissions
+      loginForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const email = document.getElementById('login-email').value;
+        const password = document.getElementById('login-password').value;
+
+        // Basic validation
+        if (!email || !password) {
+          showError('login-error', 'Please enter both email and password');
+          return;
+        }
+
+        // Simulate login (replace with actual API call)
+        // For now, just check if there's a saved user with this email
+        const savedUser = localStorage.getItem('landset_user');
+        if (savedUser) {
+          try {
+            const user = JSON.parse(savedUser);
+            if (user.email === email) {
+              currentUser = user;
+              updateUIForLoggedIn();
+              hideModal();
+              return;
+            }
+          } catch (e) {}
+        }
+
+        showError('login-error', 'Invalid email or password');
+      });
+
+      signupForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const name = document.getElementById('signup-name').value;
+        const email = document.getElementById('signup-email').value;
+        const password = document.getElementById('signup-password').value;
+        const phone = document.getElementById('signup-phone').value;
+
+        // Basic validation
+        if (!name || !email || !password) {
+          showError('signup-error', 'Please fill in all required fields');
+          return;
+        }
+
+        // Create user object
+        currentUser = {
+          name: name,
+          email: email,
+          phone: phone,
+          createdAt: new Date().toISOString()
+        };
+
+        // Save to localStorage (replace with actual API call)
+        localStorage.setItem('landset_user', JSON.stringify(currentUser));
+
+        updateUIForLoggedIn();
+        hideModal();
+
+        // Optional: Show success message
+        setTimeout(() => {
+          alert('Account created successfully! Welcome to Landset.');
+        }, 300);
+      });
+
+      settingsForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const name = document.getElementById('settings-name').value;
+        const email = document.getElementById('settings-email').value;
+        const phone = document.getElementById('settings-phone').value;
+
+        // Basic validation
+        if (!name || !email) {
+          showError('settings-error', 'Name and email are required');
+          return;
+        }
+
+        // Update user object
+        currentUser = {
+          ...currentUser,
+          name: name,
+          email: email,
+          phone: phone,
+          updatedAt: new Date().toISOString()
+        };
+
+        // Save to localStorage (replace with actual API call)
+        localStorage.setItem('landset_user', JSON.stringify(currentUser));
+
+        updateUIForLoggedIn();
+        hideModal();
+
+        // Optional: Show success message
+        setTimeout(() => {
+          alert('Settings updated successfully!');
+        }, 300);
+      });
+
+      // Helper function to show errors
+      function showError(elementId, message) {
+        const errorEl = document.getElementById(elementId);
+        errorEl.textContent = message;
+        errorEl.style.display = 'block';
+      }
+
+      // Initialize
+      checkAuth();
+    })();
+  </script>
+
+  <!-- Landset App Scripts -->
+  <script src="app/api.js"></script>
+  <script src="app/auth.js"></script>
+  <script src="app/utils.js"></script>
 
 </body></html>
