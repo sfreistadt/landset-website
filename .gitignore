@@ -1,0 +1,44 @@
+# Security scan logs
+security-scan-*.log
+security-report.txt
+
+# Environment files
+.env
+.env.local
+.env.production
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor directories and files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.bak
+*.backup
+
+# Debug files
+debug*.html
+test*.html
+
+# Node modules (if added later)
+node_modules/
+
+# Build output (if added later)
+dist/
+build/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# CDN dependency cache
+cdn-dependencies.txt

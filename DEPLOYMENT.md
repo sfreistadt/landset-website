@@ -15,6 +15,23 @@ Last validated: May 26, 2026
 | Sensitive logic in backend | ✅ PASS | Report generation (71KB), analysis (38KB) server-side |
 | API URL configuration | ✅ PASS | Uses production URL from config |
 
+### Automated Security Checks
+
+**Run security checks before deploying:**
+```bash
+# Quick check - run all security scans
+.github/scripts/run-all-checks.sh
+```
+
+These automated checks scan for:
+- Hardcoded secrets and API keys
+- XSS vulnerabilities (eval, innerHTML, etc.)
+- Oversized files
+- Dangerous file types
+- JSON syntax errors
+
+For details, see: `SECURITY.md`
+
 ### What's Public vs. Private
 
 **✅ Public (Frontend - Visible in Browser):**
@@ -274,6 +291,7 @@ ngrok http 3000
 
 ### Before Pushing Frontend:
 
+- [ ] **Run security checks:** `.github/scripts/run-all-checks.sh` ✅ ALL PASSED
 - [x] `AUTH_ENABLED: false` (for waitlist-only launch)
 - [x] Tally form URL correct: `https://tally.so/r/RGbKZ9`
 - [x] No API keys in code

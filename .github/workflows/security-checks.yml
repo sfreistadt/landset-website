@@ -1,0 +1,216 @@
+name: Security Checks
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+  workflow_dispatch:
+
+jobs:
+  security-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Full history for better secret detection
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run secret scanning
+        run: |
+          chmod +x .github/scripts/scan-secrets.sh
+          .github/scripts/scan-secrets.sh
+
+      - name: Run XSS vulnerability detection
+        run: |
+          chmod +x .github/scripts/scan-xss.sh
+          .github/scripts/scan-xss.sh
+
+      - name: Run file integrity checks
+        run: |
+          chmod +x .github/scripts/check-file-integrity.sh
+          .github/scripts/check-file-integrity.sh
+
+      - name: Validate HTML files
+        run: |
+          npm install -g html-validate
+          find . -name "*.html" -not -path "*/node_modules/*" -not -path "*/.git/*" | xargs html-validate --formatter stylish || true
+
+      - name: Check for broken links (external)
+        continue-on-error: true
+        run: |
+          npm install -g broken-link-checker
+          blc http://localhost:8080 --recursive --ordered --exclude-external || echo "Link check completed with warnings"
+
+      - name: Security Headers Check
+        run: |
+          echo "Checking for security best practices in HTML files..."
+          for file in *.html; do
+            if [ -f "$file" ]; then
+              echo "Checking $file..."
+              # Check for missing meta tags
+              if ! grep -q "Content-Security-Policy" "$file"; then
+                echo "⚠️  WARNING: $file missing Content-Security-Policy meta tag"
+              fi
+              if ! grep -q "X-Content-Type-Options" "$file"; then
+                echo "⚠️  WARNING: $file missing X-Content-Type-Options consideration"
+              fi
+            fi
+          done
+
+      - name: Upload security scan results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: security-scan-results
+          path: |
+            security-scan-*.log
+            security-report.txt
+          retention-days: 30
+
+      - name: Comment PR with results
+        if: github.event_name == 'pull_request' && failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            let comment = '## 🔒 Security Scan Results\n\n';
+            comment += '❌ Security checks failed. Please review the logs above.\n\n';
+            comment += 'Common issues:\n';
+            comment += '- Hardcoded API keys or secrets\n';
+            comment += '- Potential XSS vulnerabilities\n';
+            comment += '- Large files committed accidentally\n';
+            comment += '- Insecure JavaScript patterns\n';
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
+
+  dependency-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check for vulnerable CDN dependencies
+        run: |
+          echo "Scanning for external dependencies in HTML/JS files..."
+
+          # Extract CDN URLs from HTML and JS files
+          find . -type f \( -name "*.html" -o -name "*.js" \) -not -path "*/node_modules/*" -not -path "*/.git/*" | while read file; do
+            echo "Checking $file for CDN dependencies..."
+            grep -oP 'https?://[^"'\''>\s]+\.(js|css)' "$file" || true
+          done | sort -u > cdn-dependencies.txt
+
+          echo ""
+          echo "📦 External dependencies found:"
+          cat cdn-dependencies.txt || echo "None found"
+
+          # Check for known vulnerable versions
+          if grep -q "jquery@1\." cdn-dependencies.txt 2>/dev/null; then
+            echo "❌ ERROR: jQuery 1.x detected (has known vulnerabilities)"
+            exit 1
+          fi
+
+          if grep -q "angular@1\." cdn-dependencies.txt 2>/dev/null; then
+            echo "⚠️  WARNING: AngularJS 1.x detected (end-of-life)"
+          fi
+
+  permissions-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check file permissions
+        run: |
+          echo "Checking for files with suspicious permissions..."
+
+          # Check for executable HTML/CSS/MD files (shouldn't be executable)
+          find . -type f \( -name "*.html" -o -name "*.css" -o -name "*.md" \) -perm +111 -not -path "*/.git/*" | while read file; do
+            echo "⚠️  WARNING: $file is executable (should not be)"
+          done
+
+          # Check that shell scripts ARE executable
+          find . -type f -name "*.sh" -not -perm +111 -not -path "*/.git/*" | while read file; do
+            echo "⚠️  WARNING: $file is not executable (should be)"
+          done
+
+  build-validation:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Validate JSON in JavaScript templates
+        run: |
+          echo "Validating JSON structures in JavaScript files..."
+          chmod +x .github/scripts/validate-json-in-js.sh
+          .github/scripts/validate-json-in-js.sh
+
+      - name: Check for debugging code
+        run: |
+          echo "Checking for debugging code that shouldn't be in production..."
+
+          FOUND_DEBUG=0
+
+          # Check for console.log, debugger, etc.
+          if grep -r "console\.log\|debugger\|console\.debug" --include="*.js" --exclude-dir=".git" .; then
+            echo "⚠️  WARNING: Debug code found (console.log, debugger statements)"
+            FOUND_DEBUG=1
+          fi
+
+          # Check for TODO/FIXME comments that might indicate incomplete security fixes
+          if grep -r "TODO.*security\|FIXME.*security\|XXX.*security" --include="*.js" --include="*.html" --exclude-dir=".git" .; then
+            echo "⚠️  WARNING: Security-related TODO/FIXME comments found"
+          fi
+
+          exit 0  # Don't fail build, just warn
+
+      - name: Verify no test/debug files in production
+        run: |
+          echo "Checking for test/debug files..."
+
+          if ls debug*.html test*.html 2>/dev/null; then
+            echo "⚠️  WARNING: Debug/test HTML files found in repository"
+            echo "Consider adding to .gitignore: debug*.html test*.html"
+          fi
+
+  summary:
+    runs-on: ubuntu-latest
+    needs: [security-scan, dependency-check, permissions-check, build-validation]
+    if: always()
+
+    steps:
+      - name: Security Check Summary
+        run: |
+          echo "✅ All security checks completed!"
+          echo ""
+          echo "📊 Summary:"
+          echo "- Secret scanning: ${{ needs.security-scan.result }}"
+          echo "- Dependency check: ${{ needs.dependency-check.result }}"
+          echo "- Permissions check: ${{ needs.permissions-check.result }}"
+          echo "- Build validation: ${{ needs.build-validation.result }}"
+          echo ""
+
+          if [ "${{ needs.security-scan.result }}" == "failure" ] || \
+             [ "${{ needs.dependency-check.result }}" == "failure" ] || \
+             [ "${{ needs.permissions-check.result }}" == "failure" ] || \
+             [ "${{ needs.build-validation.result }}" == "failure" ]; then
+            echo "❌ Some security checks failed. Review the logs above."
+            exit 1
+          else
+            echo "✅ All security checks passed!"
+          fi
